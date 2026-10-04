@@ -1,0 +1,28 @@
+[0.023s] Invoking command in '/home/beelzebub/Diploma/diploma_ws/build/runner_sim': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/beelzebub/Diploma/diploma_ws/build/runner_sim -- -j8 -l8
+[0.090s] Invoked command in '/home/beelzebub/Diploma/diploma_ws/build/runner_sim' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/beelzebub/Diploma/diploma_ws/build/runner_sim -- -j8 -l8
+[0.109s] Invoking command in '/home/beelzebub/Diploma/diploma_ws/build/runner_sim': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/beelzebub/Diploma/diploma_ws/build/runner_sim
+[0.122s] -- Install configuration: ""
+[0.122s] -- Execute custom install script
+[0.123s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/config/runner_lidar.rviz
+[0.124s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/config/runner_sim.yaml
+[0.124s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/launch/runner_sim.launch.py
+[0.125s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/models/.keep
+[0.125s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/models/runner.urdf.xacro
+[0.125s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/worlds/runner_world.sdf
+[0.126s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/worlds/warehouse.sdf
+[0.126s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/ament_index/resource_index/package_run_dependencies/runner_sim
+[0.127s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/ament_index/resource_index/parent_prefix_path/runner_sim
+[0.127s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/environment/ament_prefix_path.sh
+[0.127s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/environment/ament_prefix_path.dsv
+[0.128s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/environment/path.sh
+[0.128s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/environment/path.dsv
+[0.129s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/local_setup.bash
+[0.129s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/local_setup.sh
+[0.129s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/local_setup.zsh
+[0.130s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/local_setup.dsv
+[0.130s] -- Symlinking: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/package.dsv
+[0.146s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/ament_index/resource_index/packages/runner_sim
+[0.146s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/cmake/runner_simConfig.cmake
+[0.147s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/cmake/runner_simConfig-version.cmake
+[0.148s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/package.xml
+[0.150s] Invoked command in '/home/beelzebub/Diploma/diploma_ws/build/runner_sim' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/beelzebub/Diploma/diploma_ws/build/runner_sim

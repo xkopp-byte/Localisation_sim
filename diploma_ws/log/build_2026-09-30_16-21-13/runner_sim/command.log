@@ -1,0 +1,2 @@
+Invoking command in '/home/beelzebub/Diploma/diploma_ws/build/runner_sim': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/beelzebub/Diploma/diploma_ws/src/runner_sim -DCMAKE_INSTALL_PREFIX=/home/beelzebub/Diploma/diploma_ws/install/runner_sim
+Invoked command in '/home/beelzebub/Diploma/diploma_ws/build/runner_sim' returned '1': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/beelzebub/Diploma/diploma_ws/src/runner_sim -DCMAKE_INSTALL_PREFIX=/home/beelzebub/Diploma/diploma_ws/install/runner_sim

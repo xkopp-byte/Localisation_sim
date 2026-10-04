@@ -1,0 +1,145 @@
+[0.000000] (-) TimerEvent: {}
+[0.000233] (runner_sim) JobQueued: {'identifier': 'runner_sim', 'dependencies': OrderedDict()}
+[0.000268] (runner_sim) JobStarted: {'identifier': 'runner_sim'}
+[0.010058] (runner_sim) JobProgress: {'identifier': 'runner_sim', 'progress': 'cmake'}
+[0.010835] (runner_sim) JobProgress: {'identifier': 'runner_sim', 'progress': 'build'}
+[0.011641] (runner_sim) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/beelzebub/Diploma/diploma_ws/build/runner_sim', '--', '-j8', '-l8'], 'cwd': '/home/beelzebub/Diploma/diploma_ws/build/runner_sim', 'env': OrderedDict({'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'EGL_PLATFORM': 'wayland', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'GZ_SIM_RESOURCE_PATH': '/opt/ros/jazzy/share', 'AI_AGENT': 'github_copilot_vscode_agent', 'USER': 'beelzebub', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'GIT_EDITOR': ':', 'XDG_SESSION_TYPE': 'wayland', 'CLUTTER_DISABLE_MIPMAPPED_TEXT': '1', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'COPILOT_AGENT': '1', 'HOME': '/home/beelzebub', 'CHROME_DESKTOP': 'com.microsoft.VSCode.desktop', 'OLDPWD': '/home/beelzebub/Diploma', 'TERM_PROGRAM_VERSION': '1.139.1', 'DESKTOP_SESSION': 'ubuntu', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/com.microsoft.VSCode.desktop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'MANAGERPID': '1961', 'SYSTEMD_EXEC_PID': '2241', 'IM_CONFIG_CHECK_ENV': '1', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '3891', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'IM_CONFIG_PHASE': '1', 'WAYLAND_DISPLAY': 'wayland-0', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'beelzebub', 'JOURNAL_STREAM': '10:18219', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.Shell@wayland.service/memory.pressure', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'beelzebub', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'FC_FONTATIONS': '1', 'HISTCONTROL': 'ignorespace', 'PATH': '/home/beelzebub/.config/Code/User/globalStorage/github.copilot-chat/debugCommand:/home/beelzebub/.config/Code/User/globalStorage/github.copilot-chat/copilotCli:/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/beeboop:@/tmp/.ICE-unix/2194,unix/beeboop:/tmp/.ICE-unix/2194', 'INVOCATION_ID': '6f73057af52a4c5aae66eab00c4f8d20', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_SETUP_DISPLAY': ':1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDK_BACKEND': 'wayland', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/.mutter-Xwaylandauth.RRA9V3', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'DEBIAN_FRONTEND': 'noninteractive', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GJS_DEBUG_OUTPUT': 'stderr', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'GIT_PAGER': 'cat', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/beelzebub/Diploma/diploma_ws/build/runner_sim', 'GIT_MERGE_AUTOEDIT': 'no', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'COPILOT_DEBUG_NONCE': 'a54946317e9f72ff7fcb4f362701b8fc', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib/python:/opt/ros/jazzy/opt/sdformat_vendor/lib/python:/opt/ros/jazzy/opt/gz_transport_vendor/lib/python:/opt/ros/jazzy/opt/gz_msgs_vendor/lib/python:/opt/ros/jazzy/opt/gz_math_vendor/lib/python:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy'}), 'shell': False}
+[0.079362] (runner_sim) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/localization_visualization_node.dir/src/localization_visualization_node.cpp.o\x1b[0m\n'}
+[0.079690] (runner_sim) StdoutLine: {'line': b'[ 66%] Built target ground_truth_visualization_tf_node\n'}
+[0.079895] (runner_sim) StdoutLine: {'line': b'[ 83%] Built target lidar_localization_node\n'}
+[0.099453] (-) TimerEvent: {}
+[0.199789] (-) TimerEvent: {}
+[0.300050] (-) TimerEvent: {}
+[0.400278] (-) TimerEvent: {}
+[0.500506] (-) TimerEvent: {}
+[0.600882] (-) TimerEvent: {}
+[0.701169] (-) TimerEvent: {}
+[0.801425] (-) TimerEvent: {}
+[0.901698] (-) TimerEvent: {}
+[1.002008] (-) TimerEvent: {}
+[1.102345] (-) TimerEvent: {}
+[1.202674] (-) TimerEvent: {}
+[1.302940] (-) TimerEvent: {}
+[1.403251] (-) TimerEvent: {}
+[1.503554] (-) TimerEvent: {}
+[1.603808] (-) TimerEvent: {}
+[1.704064] (-) TimerEvent: {}
+[1.804387] (-) TimerEvent: {}
+[1.904684] (-) TimerEvent: {}
+[2.004978] (-) TimerEvent: {}
+[2.105356] (-) TimerEvent: {}
+[2.205650] (-) TimerEvent: {}
+[2.305919] (-) TimerEvent: {}
+[2.406261] (-) TimerEvent: {}
+[2.506562] (-) TimerEvent: {}
+[2.606854] (-) TimerEvent: {}
+[2.707124] (-) TimerEvent: {}
+[2.807367] (-) TimerEvent: {}
+[2.907641] (-) TimerEvent: {}
+[3.007914] (-) TimerEvent: {}
+[3.108191] (-) TimerEvent: {}
+[3.208418] (-) TimerEvent: {}
+[3.308704] (-) TimerEvent: {}
+[3.408972] (-) TimerEvent: {}
+[3.509293] (-) TimerEvent: {}
+[3.609553] (-) TimerEvent: {}
+[3.709821] (-) TimerEvent: {}
+[3.810090] (-) TimerEvent: {}
+[3.910381] (-) TimerEvent: {}
+[4.010643] (-) TimerEvent: {}
+[4.110905] (-) TimerEvent: {}
+[4.211203] (-) TimerEvent: {}
+[4.311485] (-) TimerEvent: {}
+[4.411776] (-) TimerEvent: {}
+[4.512077] (-) TimerEvent: {}
+[4.612368] (-) TimerEvent: {}
+[4.712738] (-) TimerEvent: {}
+[4.813002] (-) TimerEvent: {}
+[4.913200] (-) TimerEvent: {}
+[5.013469] (-) TimerEvent: {}
+[5.113740] (-) TimerEvent: {}
+[5.214002] (-) TimerEvent: {}
+[5.314259] (-) TimerEvent: {}
+[5.414571] (-) TimerEvent: {}
+[5.514883] (-) TimerEvent: {}
+[5.615194] (-) TimerEvent: {}
+[5.715550] (-) TimerEvent: {}
+[5.815865] (-) TimerEvent: {}
+[5.916145] (-) TimerEvent: {}
+[6.016486] (-) TimerEvent: {}
+[6.116804] (-) TimerEvent: {}
+[6.217068] (-) TimerEvent: {}
+[6.317304] (-) TimerEvent: {}
+[6.417554] (-) TimerEvent: {}
+[6.517809] (-) TimerEvent: {}
+[6.618077] (-) TimerEvent: {}
+[6.718332] (-) TimerEvent: {}
+[6.818613] (-) TimerEvent: {}
+[6.918889] (-) TimerEvent: {}
+[7.019194] (-) TimerEvent: {}
+[7.119485] (-) TimerEvent: {}
+[7.219740] (-) TimerEvent: {}
+[7.319997] (-) TimerEvent: {}
+[7.420240] (-) TimerEvent: {}
+[7.520517] (-) TimerEvent: {}
+[7.620779] (-) TimerEvent: {}
+[7.721032] (-) TimerEvent: {}
+[7.821225] (-) TimerEvent: {}
+[7.921485] (-) TimerEvent: {}
+[8.021736] (-) TimerEvent: {}
+[8.121995] (-) TimerEvent: {}
+[8.222200] (-) TimerEvent: {}
+[8.322485] (-) TimerEvent: {}
+[8.422781] (-) TimerEvent: {}
+[8.523079] (-) TimerEvent: {}
+[8.623311] (-) TimerEvent: {}
+[8.723557] (-) TimerEvent: {}
+[8.823815] (-) TimerEvent: {}
+[8.924073] (-) TimerEvent: {}
+[9.024319] (-) TimerEvent: {}
+[9.124588] (-) TimerEvent: {}
+[9.224892] (-) TimerEvent: {}
+[9.325259] (-) TimerEvent: {}
+[9.425549] (-) TimerEvent: {}
+[9.469918] (runner_sim) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable localization_visualization_node\x1b[0m\n'}
+[9.525656] (-) TimerEvent: {}
+[9.625971] (-) TimerEvent: {}
+[9.726317] (-) TimerEvent: {}
+[9.826605] (-) TimerEvent: {}
+[9.926900] (-) TimerEvent: {}
+[9.954551] (runner_sim) StdoutLine: {'line': b'[100%] Built target localization_visualization_node\n'}
+[9.968283] (runner_sim) CommandEnded: {'returncode': 0}
+[9.969396] (runner_sim) JobProgress: {'identifier': 'runner_sim', 'progress': 'install'}
+[9.980784] (runner_sim) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/beelzebub/Diploma/diploma_ws/build/runner_sim'], 'cwd': '/home/beelzebub/Diploma/diploma_ws/build/runner_sim', 'env': OrderedDict({'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'EGL_PLATFORM': 'wayland', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'GZ_SIM_RESOURCE_PATH': '/opt/ros/jazzy/share', 'AI_AGENT': 'github_copilot_vscode_agent', 'USER': 'beelzebub', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'GIT_EDITOR': ':', 'XDG_SESSION_TYPE': 'wayland', 'CLUTTER_DISABLE_MIPMAPPED_TEXT': '1', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'COPILOT_AGENT': '1', 'HOME': '/home/beelzebub', 'CHROME_DESKTOP': 'com.microsoft.VSCode.desktop', 'OLDPWD': '/home/beelzebub/Diploma', 'TERM_PROGRAM_VERSION': '1.139.1', 'DESKTOP_SESSION': 'ubuntu', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/com.microsoft.VSCode.desktop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'MANAGERPID': '1961', 'SYSTEMD_EXEC_PID': '2241', 'IM_CONFIG_CHECK_ENV': '1', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '3891', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'IM_CONFIG_PHASE': '1', 'WAYLAND_DISPLAY': 'wayland-0', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'beelzebub', 'JOURNAL_STREAM': '10:18219', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.Shell@wayland.service/memory.pressure', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'beelzebub', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'FC_FONTATIONS': '1', 'HISTCONTROL': 'ignorespace', 'PATH': '/home/beelzebub/.config/Code/User/globalStorage/github.copilot-chat/debugCommand:/home/beelzebub/.config/Code/User/globalStorage/github.copilot-chat/copilotCli:/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/beeboop:@/tmp/.ICE-unix/2194,unix/beeboop:/tmp/.ICE-unix/2194', 'INVOCATION_ID': '6f73057af52a4c5aae66eab00c4f8d20', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_SETUP_DISPLAY': ':1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDK_BACKEND': 'wayland', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/.mutter-Xwaylandauth.RRA9V3', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'DEBIAN_FRONTEND': 'noninteractive', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GJS_DEBUG_OUTPUT': 'stderr', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'GIT_PAGER': 'cat', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/beelzebub/Diploma/diploma_ws/build/runner_sim', 'GIT_MERGE_AUTOEDIT': 'no', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'COPILOT_DEBUG_NONCE': 'a54946317e9f72ff7fcb4f362701b8fc', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib/python:/opt/ros/jazzy/opt/sdformat_vendor/lib/python:/opt/ros/jazzy/opt/gz_transport_vendor/lib/python:/opt/ros/jazzy/opt/gz_msgs_vendor/lib/python:/opt/ros/jazzy/opt/gz_math_vendor/lib/python:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy'}), 'shell': False}
+[9.989659] (runner_sim) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[9.990340] (runner_sim) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[9.990972] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/lib/runner_sim/lidar_localization_node\n'}
+[9.991502] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/lib/runner_sim/ground_truth_visualization_tf_node\n'}
+[9.991774] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/lib/runner_sim/localization_visualization_node\n'}
+[9.992236] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/config/runner_lidar.rviz\n'}
+[9.992488] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/config/runner_sim.yaml\n'}
+[9.992903] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/launch/__pycache__/runner_sim.launch.cpython-312.pyc\n'}
+[9.993114] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/launch/runner_sim.launch.py\n'}
+[9.993496] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/models/.keep\n'}
+[9.993683] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/models/runner.urdf.xacro\n'}
+[9.993915] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/worlds/runner_world.sdf\n'}
+[9.994092] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/worlds/warehouse.sdf\n'}
+[9.994390] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/ament_index/resource_index/package_run_dependencies/runner_sim\n'}
+[9.994615] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/ament_index/resource_index/parent_prefix_path/runner_sim\n'}
+[9.994790] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/environment/ament_prefix_path.sh\n'}
+[9.994967] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/environment/ament_prefix_path.dsv\n'}
+[9.995246] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/environment/path.sh\n'}
+[9.995412] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/environment/path.dsv\n'}
+[9.995577] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/local_setup.bash\n'}
+[9.995741] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/local_setup.sh\n'}
+[9.995992] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/local_setup.zsh\n'}
+[9.996265] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/local_setup.dsv\n'}
+[9.996570] (runner_sim) StdoutLine: {'line': b'-- Symlinking: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/package.dsv\n'}
+[10.006519] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/ament_index/resource_index/packages/runner_sim\n'}
+[10.006915] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/cmake/runner_simConfig.cmake\n'}
+[10.007159] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/cmake/runner_simConfig-version.cmake\n'}
+[10.007358] (runner_sim) StdoutLine: {'line': b'-- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/package.xml\n'}
+[10.009687] (runner_sim) CommandEnded: {'returncode': 0}
+[10.026990] (-) TimerEvent: {}
+[10.028084] (runner_sim) JobEnded: {'identifier': 'runner_sim', 'rc': 0}
+[10.028896] (-) EventReactorShutdown: {}

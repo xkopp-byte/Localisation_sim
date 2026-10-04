@@ -1,0 +1,1 @@
+/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_core/runner_simConfig-version.cmake

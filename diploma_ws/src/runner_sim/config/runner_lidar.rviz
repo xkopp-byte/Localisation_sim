@@ -1,0 +1,84 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Plane: XY
+      Cell Size: 1
+      Line Style:
+        Line Width: 0.03
+      Color: 160; 160; 160
+      Alpha: 0.5
+    - Class: rviz_default_plugins/LaserScan
+      Name: lidar_runner_01
+      Topic: /runner_01/lidar_fused
+      Size (m): 0.03
+      Style: Points
+      Color: 255; 255; 255
+      Use Fixed Frame: true
+      Autocompute Intensity Bounds: true
+    - Class: rviz_default_plugins/LaserScan
+      Name: lidar_runner_02
+      Topic: /runner_02/lidar_fused
+      Size (m): 0.03
+      Style: Points
+      Color: 255; 255; 120
+      Use Fixed Frame: true
+      Autocompute Intensity Bounds: true
+    - Class: rviz_default_plugins/LaserScan
+      Name: lidar_runner_03
+      Topic: /runner_03/lidar_fused
+      Size (m): 0.03
+      Style: Points
+      Color: 255; 200; 120
+      Use Fixed Frame: true
+      Autocompute Intensity Bounds: true
+    - Class: rviz_default_plugins/LaserScan
+      Name: lidar_runner_04
+      Topic: /runner_04/lidar_fused
+      Size (m): 0.03
+      Style: Points
+      Color: 255; 180; 180
+      Use Fixed Frame: true
+      Autocompute Intensity Bounds: true
+    - Class: rviz_default_plugins/LaserScan
+      Name: lidar_runner_05
+      Topic: /runner_05/lidar_fused
+      Size (m): 0.03
+      Style: Points
+      Color: 255; 120; 220
+      Use Fixed Frame: true
+      Autocompute Intensity Bounds: true
+    - Class: rviz_default_plugins/LaserScan
+      Name: lidar_runner_06
+      Topic: /runner_06/lidar_fused
+      Size (m): 0.03
+      Style: Points
+      Color: 180; 140; 255
+      Use Fixed Frame: true
+      Autocompute Intensity Bounds: true
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: runner_localization_markers
+      Marker Topic: /visualization_marker_array
+  Enabled: true
+  Global Options:
+    Fixed Frame: world
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/Interact
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+  Views:
+    Current:
+      Class: rviz_default_plugins/TopDownOrtho
+      Scale: 12
+      X: 0
+      Y: 0
+Window Geometry:
+  Height: 800
+  Width: 1200

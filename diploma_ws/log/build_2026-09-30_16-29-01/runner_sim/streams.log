@@ -1,0 +1,56 @@
+[0.013s] Invoking command in '/home/beelzebub/Diploma/diploma_ws/build/runner_sim': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/beelzebub/Diploma/diploma_ws/build/runner_sim -- -j8 -l8
+[0.043s] -- Found ament_cmake: 2.5.6 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.299s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.310s] -- Found geometry_msgs: 5.3.8 (/opt/ros/jazzy/share/geometry_msgs/cmake)
+[0.341s] -- Found rosidl_generator_c: 4.6.9 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)
+[0.352s] -- Found rosidl_generator_cpp: 4.6.9 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)
+[0.365s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.381s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.432s] -- Found nav_msgs: 5.3.8 (/opt/ros/jazzy/share/nav_msgs/cmake)
+[0.477s] -- Found rclcpp: 28.1.22 (/opt/ros/jazzy/share/rclcpp/cmake)
+[0.538s] -- Found rmw_implementation_cmake: 7.3.3 (/opt/ros/jazzy/share/rmw_implementation_cmake/cmake)
+[0.541s] -- Found rmw_fastrtps_cpp: 8.4.4 (/opt/ros/jazzy/share/rmw_fastrtps_cpp/cmake)
+[0.630s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.732s] -- Found sensor_msgs: 5.3.8 (/opt/ros/jazzy/share/sensor_msgs/cmake)
+[0.767s] -- Found tf2: 0.36.22 (/opt/ros/jazzy/share/tf2/cmake)
+[0.773s] -- Found tf2_ros: 0.36.22 (/opt/ros/jazzy/share/tf2_ros/cmake)
+[0.937s] -- Found visualization_msgs: 5.3.8 (/opt/ros/jazzy/share/visualization_msgs/cmake)
+[1.131s] -- Configuring done (1.1s)
+[1.160s] -- Generating done (0.0s)
+[1.171s] -- Build files have been written to: /home/beelzebub/Diploma/diploma_ws/build/runner_sim
+[1.215s] [ 16%] [32mBuilding CXX object CMakeFiles/localization_visualization_node.dir/src/localization_visualization_node.cpp.o[0m
+[1.229s] [ 50%] Built target lidar_localization_node
+[1.229s] [ 83%] Built target ground_truth_visualization_tf_node
+[10.433s] [100%] [32m[1mLinking CXX executable localization_visualization_node[0m
+[10.871s] [100%] Built target localization_visualization_node
+[10.884s] Invoked command in '/home/beelzebub/Diploma/diploma_ws/build/runner_sim' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/beelzebub/Diploma/diploma_ws/build/runner_sim -- -j8 -l8
+[10.896s] Invoking command in '/home/beelzebub/Diploma/diploma_ws/build/runner_sim': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/beelzebub/Diploma/diploma_ws/build/runner_sim
+[10.905s] -- Install configuration: ""
+[10.905s] -- Execute custom install script
+[10.906s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/lib/runner_sim/lidar_localization_node
+[10.906s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/lib/runner_sim/ground_truth_visualization_tf_node
+[10.906s] -- Symlinking: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/lib/runner_sim/localization_visualization_node
+[10.917s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/config/runner_lidar.rviz
+[10.917s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/config/runner_sim.yaml
+[10.917s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/launch/__pycache__/runner_sim.launch.cpython-312.pyc
+[10.917s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/launch/runner_sim.launch.py
+[10.918s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/models/.keep
+[10.918s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/models/runner.urdf.xacro
+[10.918s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/worlds/runner_world.sdf
+[10.919s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/worlds/warehouse.sdf
+[10.920s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/ament_index/resource_index/package_run_dependencies/runner_sim
+[10.921s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/ament_index/resource_index/parent_prefix_path/runner_sim
+[10.921s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/environment/ament_prefix_path.sh
+[10.921s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/environment/ament_prefix_path.dsv
+[10.922s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/environment/path.sh
+[10.922s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/environment/path.dsv
+[10.922s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/local_setup.bash
+[10.922s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/local_setup.sh
+[10.922s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/local_setup.zsh
+[10.922s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/local_setup.dsv
+[10.923s] -- Symlinking: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/package.dsv
+[10.933s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/ament_index/resource_index/packages/runner_sim
+[10.933s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/cmake/runner_simConfig.cmake
+[10.933s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/cmake/runner_simConfig-version.cmake
+[10.933s] -- Up-to-date symlink: /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/package.xml
+[10.937s] Invoked command in '/home/beelzebub/Diploma/diploma_ws/build/runner_sim' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/beelzebub/Diploma/diploma_ws/build/runner_sim

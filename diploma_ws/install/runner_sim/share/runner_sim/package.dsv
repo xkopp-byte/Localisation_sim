@@ -1,0 +1,6 @@
+source;share/runner_sim/hook/cmake_prefix_path.dsv
+source;share/runner_sim/hook/cmake_prefix_path.sh
+source;share/runner_sim/local_setup.bash
+source;share/runner_sim/local_setup.dsv
+source;share/runner_sim/local_setup.sh
+source;share/runner_sim/local_setup.zsh

@@ -1,0 +1,16 @@
+runner:
+  body:
+    width: 0.6
+    length: 1.0
+    height: 1.5
+  limits:
+    max_linear_velocity: 2.0
+    max_angular_velocity: 1.5707963267948966
+  sensors:
+    lidar_height: 1.6
+    lidar_range_min: 0.12
+    lidar_range_max: 30.0
+    lidar_update_rate: 10.0
+    imu_update_rate: 100.0
+    imu_accel_noise_stddev: 0.02
+    imu_angular_velocity_noise_stddev: 0.01

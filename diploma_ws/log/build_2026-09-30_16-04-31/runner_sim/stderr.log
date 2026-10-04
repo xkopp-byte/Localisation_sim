@@ -1,0 +1,7 @@
+[01m[K/home/beelzebub/Diploma/diploma_ws/src/runner_sim/src/lidar_localization_node.cpp:[m[K In member function ‘[01m[Kvoid LidarLocalizationNode::[01;32m[Kprocess_scan[m[K(const sensor_msgs::msg::LaserScan&)[m[K’:
+[01m[K/home/beelzebub/Diploma/diploma_ws/src/runner_sim/src/lidar_localization_node.cpp:342:37:[m[K [01;31m[Kerror: [m[Kbase operand of ‘[01m[K->[m[K’ has non-pointer type ‘[01m[Kconst sensor_msgs::msg::LaserScan[m[K’ {aka ‘[01m[Kconst sensor_msgs::msg::LaserScan_<std::allocator<void> >[m[K’}
+  342 |     const rclcpp::Time stamp(message[01;31m[K->[m[Kheader.stamp);
+      |                                     [01;31m[K^~[m[K
+gmake[2]: *** [CMakeFiles/lidar_localization_node.dir/build.make:76: CMakeFiles/lidar_localization_node.dir/src/lidar_localization_node.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/lidar_localization_node.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <world name="runner_warehouse">
+    <plugin filename="libgz-sim-physics-system.so" name="gz::sim::systems::Physics"/>
+    <plugin filename="libgz-sim8-sensors-system.so" name="gz::sim::systems::Sensors"/>
+    <plugin filename="libgz-sim-user-commands-system.so" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="libgz-sim-scene-broadcaster-system.so" name="gz::sim::systems::SceneBroadcaster"/>
+
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 12 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <direction>-0.3 0.2 -1.0</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry><plane><normal>0 0 1</normal><size>40 30</size></plane></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><plane><normal>0 0 1</normal><size>40 30</size></plane></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name="warehouse_structure">
+      <static>true</static>
+      <link name="structure_link">
+        <visual name="north_wall_visual"><pose>0 6 1.5 0 0 0</pose><geometry><box><size>16 0.2 3</size></box></geometry></visual>
+        <collision name="north_wall_collision"><pose>0 6 1.5 0 0 0</pose><geometry><box><size>16 0.2 3</size></box></geometry></collision>
+        <visual name="south_wall_visual"><pose>0 -6 1.5 0 0 0</pose><geometry><box><size>16 0.2 3</size></box></geometry></visual>
+        <collision name="south_wall_collision"><pose>0 -6 1.5 0 0 0</pose><geometry><box><size>16 0.2 3</size></box></geometry></collision>
+        <visual name="west_wall_visual"><pose>-8 0 1.5 0 0 0</pose><geometry><box><size>0.2 12 3</size></box></geometry></visual>
+        <collision name="west_wall_collision"><pose>-8 0 1.5 0 0 0</pose><geometry><box><size>0.2 12 3</size></box></geometry></collision>
+        <visual name="east_wall_visual"><pose>8 0 1.5 0 0 0</pose><geometry><box><size>0.2 12 3</size></box></geometry></visual>
+        <collision name="east_wall_collision"><pose>8 0 1.5 0 0 0</pose><geometry><box><size>0.2 12 3</size></box></geometry></collision>
+
+        <visual name="shelf_a_visual"><pose>-4 2.5 1 0 0 0</pose><geometry><box><size>5 0.8 2</size></box></geometry></visual>
+        <collision name="shelf_a_collision"><pose>-4 2.5 1 0 0 0</pose><geometry><box><size>5 0.8 2</size></box></geometry></collision>
+        <visual name="shelf_b_visual"><pose>2 2.5 1 0 0 0</pose><geometry><box><size>4 0.8 2</size></box></geometry></visual>
+        <collision name="shelf_b_collision"><pose>2 2.5 1 0 0 0</pose><geometry><box><size>4 0.8 2</size></box></geometry></collision>
+        <visual name="shelf_c_visual"><pose>-1 -2.5 1 0 0 0</pose><geometry><box><size>6 0.8 2</size></box></geometry></visual>
+        <collision name="shelf_c_collision"><pose>-1 -2.5 1 0 0 0</pose><geometry><box><size>6 0.8 2</size></box></geometry></collision>
+        <visual name="shelf_d_visual"><pose>5 -2.5 1 0 0 0</pose><geometry><box><size>3 0.8 2</size></box></geometry></visual>
+        <collision name="shelf_d_collision"><pose>5 -2.5 1 0 0 0</pose><geometry><box><size>3 0.8 2</size></box></geometry></collision>
+      </link>
+    </model>
+  </world>
+</sdf>

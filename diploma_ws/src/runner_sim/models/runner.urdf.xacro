@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="runner">
+  <xacro:arg name="robot_name" default="runner_01"/>
+
+  <xacro:property name="body_width" value="0.6"/>
+  <xacro:property name="body_length" value="1.0"/>
+  <xacro:property name="body_height" value="1.5"/>
+  <xacro:property name="body_z" value="0.75"/>
+  <xacro:property name="wheel_radius" value="0.12"/>
+  <xacro:property name="wheel_width" value="0.06"/>
+  <xacro:property name="wheel_track" value="0.52"/>
+  <xacro:property name="wheel_x" value="0"/>
+  <xacro:property name="lidar_height" value="1.6"/>
+  <xacro:property name="lidar_range_min" value="0.12"/>
+  <xacro:property name="lidar_range_max" value="30.0"/>
+  <xacro:property name="lidar_update_rate" value="10.0"/>
+  <xacro:property name="imu_update_rate" value="100.0"/>
+  <xacro:property name="imu_accel_noise" value="0.02"/>
+  <xacro:property name="imu_gyro_noise" value="0.01"/>
+
+  <material name="runner_blue"><color rgba="0.12 0.32 0.62 1.0"/></material>
+  <material name="rubber"><color rgba="0.03 0.03 0.03 1.0"/></material>
+  <material name="sensor_black"><color rgba="0.08 0.08 0.08 1.0"/></material>
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="45.0"/>
+      <inertia ixx="10.0" ixy="0" ixz="0" iyy="6.0" iyz="0" izz="8.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 ${body_z}"/>
+      <geometry><box size="${body_length} ${body_width} ${body_height}"/></geometry>
+      <material name="runner_blue"/>
+    </visual>
+    <collision name="chassis_collision">
+      <origin xyz="0 0 ${body_z}"/>
+      <geometry><box size="${body_length} ${body_width} ${body_height}"/></geometry>
+    </collision>
+  </link>
+
+  <link name="left_wheel_link">
+    <inertial><mass value="1.5"/><inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/></inertial>
+    <visual><origin rpy="${pi / 2} 0 0"/><geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry><material name="rubber"/></visual>
+    <collision><origin rpy="${pi / 2} 0 0"/><geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry></collision>
+  </link>
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="base_link"/><child link="left_wheel_link"/>
+    <origin xyz="${wheel_x} ${wheel_track / 2} ${wheel_radius}"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="right_wheel_link">
+    <inertial><mass value="1.5"/><inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/></inertial>
+    <visual><origin rpy="${pi / 2} 0 0"/><geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry><material name="rubber"/></visual>
+    <collision><origin rpy="${pi / 2} 0 0"/><geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry></collision>
+  </link>
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="base_link"/><child link="right_wheel_link"/>
+    <origin xyz="${wheel_x} -${wheel_track / 2} ${wheel_radius}"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="caster_link">
+    <inertial><mass value="0.8"/><inertia ixx="0.005" iyy="0.005" izz="0.005" ixy="0" ixz="0" iyz="0"/></inertial>
+    <visual><geometry><sphere radius="0.09"/></geometry><material name="rubber"/></visual>
+    <collision><geometry><sphere radius="0.09"/></geometry></collision>
+  </link>
+  <joint name="caster_joint" type="fixed">
+    <parent link="base_link"/><child link="caster_link"/>
+    <origin xyz="0.38 0 0.09"/>
+  </joint>
+
+  <xacro:macro name="lidar" params="name x y yaw topic">
+    <link name="${name}_link">
+      <visual><geometry><cylinder radius="0.055" length="0.08"/></geometry><material name="sensor_black"/></visual>
+    </link>
+    <joint name="${name}_joint" type="fixed">
+      <parent link="base_link"/><child link="${name}_link"/>
+      <origin xyz="${x} ${y} ${lidar_height - body_z}" rpy="0 0 ${yaw}"/>
+    </joint>
+    <gazebo reference="${name}_link">
+      <sensor name="${name}" type="gpu_lidar">
+        <always_on>true</always_on>
+        <visualize>true</visualize>
+        <update_rate>${lidar_update_rate}</update_rate>
+        <topic>${topic}</topic>
+        <pose>0 0 0 0 0 0</pose>
+        <lidar>
+          <scan>
+            <horizontal>
+              <samples>1080</samples>
+              <resolution>1</resolution>
+              <min_angle>-2.35619</min_angle>
+              <max_angle>2.35619</max_angle>
+            </horizontal>
+          </scan>
+          <range><min>${lidar_range_min}</min><max>${lidar_range_max}</max><resolution>0.01</resolution></range>
+        </lidar>
+      </sensor>
+    </gazebo>
+  </xacro:macro>
+
+  <!-- Front-right points forward; rear-left points backward. Sensor housings have no collision geometry. -->
+  <xacro:lidar name="front_right_lidar" x="0.56" y="-0.36" yaw="0" topic="/$(arg robot_name)_lidar_front"/>
+  <xacro:lidar name="rear_left_lidar" x="-0.56" y="0.36" yaw="${pi}" topic="/$(arg robot_name)_lidar_rear"/>
+
+  <link name="imu_link"/>
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/><child link="imu_link"/><origin xyz="0 0 0.25"/>
+  </joint>
+
+  <gazebo>
+    <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+      <left_joint>left_wheel_joint</left_joint>
+      <right_joint>right_wheel_joint</right_joint>
+      <wheel_separation>${wheel_track}</wheel_separation>
+      <wheel_radius>${wheel_radius}</wheel_radius>
+      <max_linear_velocity>2.0</max_linear_velocity>
+      <max_angular_velocity>1.5707963267948966</max_angular_velocity>
+      <topic>/$(arg robot_name)/cmd_vel</topic>
+      <odom_topic>/$(arg robot_name)/wheel/odometry</odom_topic>
+      <tf_topic>/$(arg robot_name)/tf</tf_topic>
+      <frame_id>$(arg robot_name)/odom</frame_id>
+      <child_frame_id>$(arg robot_name)/base_link</child_frame_id>
+    </plugin>
+    <plugin filename="gz-sim-odometry-publisher-system" name="gz::sim::systems::OdometryPublisher">
+      <odom_publish_frequency>30</odom_publish_frequency>
+      <odom_topic>/$(arg robot_name)/ground_truth/odometry</odom_topic>
+      <odom_frame>$(arg robot_name)/ground_truth</odom_frame>
+      <robot_base_frame>$(arg robot_name)/base_link</robot_base_frame>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="imu_link">
+    <sensor name="imu" type="imu">
+      <always_on>true</always_on>
+      <update_rate>${imu_update_rate}</update_rate>
+      <topic>/$(arg robot_name)/sensors/imu/data</topic>
+      <imu>
+        <angular_velocity><x><noise type="gaussian"><stddev>${imu_gyro_noise}</stddev></noise></x><y><noise type="gaussian"><stddev>${imu_gyro_noise}</stddev></noise></y><z><noise type="gaussian"><stddev>${imu_gyro_noise}</stddev></noise></z></angular_velocity>
+        <linear_acceleration><x><noise type="gaussian"><stddev>${imu_accel_noise}</stddev></noise></x><y><noise type="gaussian"><stddev>${imu_accel_noise}</stddev></noise></y><z><noise type="gaussian"><stddev>${imu_accel_noise}</stddev></noise></z></linear_acceleration>
+      </imu>
+    </sensor>
+  </gazebo>
+</robot>
