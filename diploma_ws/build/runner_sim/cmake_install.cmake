@@ -12,7 +12,7 @@ if(NOT DEFINED CMAKE_INSTALL_CONFIG_NAME)
     string(REGEX REPLACE "^[^A-Za-z0-9_]+" ""
            CMAKE_INSTALL_CONFIG_NAME "${BUILD_TYPE}")
   else()
-    set(CMAKE_INSTALL_CONFIG_NAME "")
+    set(CMAKE_INSTALL_CONFIG_NAME "Release")
   endif()
   message(STATUS "Install configuration: \"${CMAKE_INSTALL_CONFIG_NAME}\"")
 endif()
@@ -44,6 +44,409 @@ endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   include("/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_symlink_install/ament_cmake_symlink_install.cmake")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_generator_c.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_generator_c.so")
+    file(RPATH_CHECK
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_generator_c.so"
+         RPATH "")
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/librunner_sim__rosidl_generator_c.so")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_generator_c.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_generator_c.so")
+    file(RPATH_CHANGE
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_generator_c.so"
+         OLD_RPATH "/opt/ros/jazzy/lib:"
+         NEW_RPATH "")
+    if(CMAKE_INSTALL_DO_STRIP)
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_generator_c.so")
+    endif()
+  endif()
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_fastrtps_c.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_fastrtps_c.so")
+    file(RPATH_CHECK
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_fastrtps_c.so"
+         RPATH "")
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/librunner_sim__rosidl_typesupport_fastrtps_c.so")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_fastrtps_c.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_fastrtps_c.so")
+    file(RPATH_CHANGE
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_fastrtps_c.so"
+         OLD_RPATH "/opt/ros/jazzy/lib:/home/beelzebub/Diploma/diploma_ws/build/runner_sim:"
+         NEW_RPATH "")
+    if(CMAKE_INSTALL_DO_STRIP)
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_fastrtps_c.so")
+    endif()
+  endif()
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_fastrtps_cpp.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_fastrtps_cpp.so")
+    file(RPATH_CHECK
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_fastrtps_cpp.so"
+         RPATH "")
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/librunner_sim__rosidl_typesupport_fastrtps_cpp.so")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_fastrtps_cpp.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_fastrtps_cpp.so")
+    file(RPATH_CHANGE
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_fastrtps_cpp.so"
+         OLD_RPATH "/opt/ros/jazzy/lib:/home/beelzebub/Diploma/diploma_ws/build/runner_sim:"
+         NEW_RPATH "")
+    if(CMAKE_INSTALL_DO_STRIP)
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_fastrtps_cpp.so")
+    endif()
+  endif()
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_introspection_c.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_introspection_c.so")
+    file(RPATH_CHECK
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_introspection_c.so"
+         RPATH "")
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/librunner_sim__rosidl_typesupport_introspection_c.so")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_introspection_c.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_introspection_c.so")
+    file(RPATH_CHANGE
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_introspection_c.so"
+         OLD_RPATH "/home/beelzebub/Diploma/diploma_ws/build/runner_sim:/opt/ros/jazzy/lib:"
+         NEW_RPATH "")
+    if(CMAKE_INSTALL_DO_STRIP)
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_introspection_c.so")
+    endif()
+  endif()
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_c.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_c.so")
+    file(RPATH_CHECK
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_c.so"
+         RPATH "")
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/librunner_sim__rosidl_typesupport_c.so")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_c.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_c.so")
+    file(RPATH_CHANGE
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_c.so"
+         OLD_RPATH "/home/beelzebub/Diploma/diploma_ws/build/runner_sim:/opt/ros/jazzy/lib:"
+         NEW_RPATH "")
+    if(CMAKE_INSTALL_DO_STRIP)
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_c.so")
+    endif()
+  endif()
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_introspection_cpp.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_introspection_cpp.so")
+    file(RPATH_CHECK
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_introspection_cpp.so"
+         RPATH "")
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/librunner_sim__rosidl_typesupport_introspection_cpp.so")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_introspection_cpp.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_introspection_cpp.so")
+    file(RPATH_CHANGE
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_introspection_cpp.so"
+         OLD_RPATH "/home/beelzebub/Diploma/diploma_ws/build/runner_sim:/opt/ros/jazzy/lib:"
+         NEW_RPATH "")
+    if(CMAKE_INSTALL_DO_STRIP)
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_introspection_cpp.so")
+    endif()
+  endif()
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_cpp.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_cpp.so")
+    file(RPATH_CHECK
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_cpp.so"
+         RPATH "")
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/librunner_sim__rosidl_typesupport_cpp.so")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_cpp.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_cpp.so")
+    file(RPATH_CHANGE
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_cpp.so"
+         OLD_RPATH "/home/beelzebub/Diploma/diploma_ws/build/runner_sim:/opt/ros/jazzy/lib:"
+         NEW_RPATH "")
+    if(CMAKE_INSTALL_DO_STRIP)
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_typesupport_cpp.so")
+    endif()
+  endif()
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  execute_process(
+        COMMAND
+        "/usr/bin/python3" "-m" "compileall"
+        "/home/beelzebub/Diploma/diploma_ws/install/runner_sim/lib/python3.12/site-packages/runner_sim"
+      )
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_generator_py.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_generator_py.so")
+    file(RPATH_CHECK
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_generator_py.so"
+         RPATH "")
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/librunner_sim__rosidl_generator_py.so")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_generator_py.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_generator_py.so")
+    file(RPATH_CHANGE
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_generator_py.so"
+         OLD_RPATH "/home/beelzebub/Diploma/diploma_ws/build/runner_sim:/opt/ros/jazzy/lib:"
+         NEW_RPATH "")
+    if(CMAKE_INSTALL_DO_STRIP)
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librunner_sim__rosidl_generator_py.so")
+    endif()
+  endif()
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_generator_cExport.cmake")
+    file(DIFFERENT _cmake_export_file_changed FILES
+         "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_generator_cExport.cmake"
+         "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/export_runner_sim__rosidl_generator_cExport.cmake")
+    if(_cmake_export_file_changed)
+      file(GLOB _cmake_old_config_files "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_generator_cExport-*.cmake")
+      if(_cmake_old_config_files)
+        string(REPLACE ";" ", " _cmake_old_config_files_text "${_cmake_old_config_files}")
+        message(STATUS "Old export file \"$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_generator_cExport.cmake\" will be replaced.  Removing files [${_cmake_old_config_files_text}].")
+        unset(_cmake_old_config_files_text)
+        file(REMOVE ${_cmake_old_config_files})
+      endif()
+      unset(_cmake_old_config_files)
+    endif()
+    unset(_cmake_export_file_changed)
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake" TYPE FILE FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/export_runner_sim__rosidl_generator_cExport.cmake")
+  if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake" TYPE FILE FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/export_runner_sim__rosidl_generator_cExport-release.cmake")
+  endif()
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_typesupport_fastrtps_cExport.cmake")
+    file(DIFFERENT _cmake_export_file_changed FILES
+         "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_typesupport_fastrtps_cExport.cmake"
+         "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/export_runner_sim__rosidl_typesupport_fastrtps_cExport.cmake")
+    if(_cmake_export_file_changed)
+      file(GLOB _cmake_old_config_files "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_typesupport_fastrtps_cExport-*.cmake")
+      if(_cmake_old_config_files)
+        string(REPLACE ";" ", " _cmake_old_config_files_text "${_cmake_old_config_files}")
+        message(STATUS "Old export file \"$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_typesupport_fastrtps_cExport.cmake\" will be replaced.  Removing files [${_cmake_old_config_files_text}].")
+        unset(_cmake_old_config_files_text)
+        file(REMOVE ${_cmake_old_config_files})
+      endif()
+      unset(_cmake_old_config_files)
+    endif()
+    unset(_cmake_export_file_changed)
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake" TYPE FILE FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/export_runner_sim__rosidl_typesupport_fastrtps_cExport.cmake")
+  if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake" TYPE FILE FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/export_runner_sim__rosidl_typesupport_fastrtps_cExport-release.cmake")
+  endif()
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_generator_cppExport.cmake")
+    file(DIFFERENT _cmake_export_file_changed FILES
+         "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_generator_cppExport.cmake"
+         "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/export_runner_sim__rosidl_generator_cppExport.cmake")
+    if(_cmake_export_file_changed)
+      file(GLOB _cmake_old_config_files "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_generator_cppExport-*.cmake")
+      if(_cmake_old_config_files)
+        string(REPLACE ";" ", " _cmake_old_config_files_text "${_cmake_old_config_files}")
+        message(STATUS "Old export file \"$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_generator_cppExport.cmake\" will be replaced.  Removing files [${_cmake_old_config_files_text}].")
+        unset(_cmake_old_config_files_text)
+        file(REMOVE ${_cmake_old_config_files})
+      endif()
+      unset(_cmake_old_config_files)
+    endif()
+    unset(_cmake_export_file_changed)
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake" TYPE FILE FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/export_runner_sim__rosidl_generator_cppExport.cmake")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_typesupport_fastrtps_cppExport.cmake")
+    file(DIFFERENT _cmake_export_file_changed FILES
+         "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_typesupport_fastrtps_cppExport.cmake"
+         "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/export_runner_sim__rosidl_typesupport_fastrtps_cppExport.cmake")
+    if(_cmake_export_file_changed)
+      file(GLOB _cmake_old_config_files "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_typesupport_fastrtps_cppExport-*.cmake")
+      if(_cmake_old_config_files)
+        string(REPLACE ";" ", " _cmake_old_config_files_text "${_cmake_old_config_files}")
+        message(STATUS "Old export file \"$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_typesupport_fastrtps_cppExport.cmake\" will be replaced.  Removing files [${_cmake_old_config_files_text}].")
+        unset(_cmake_old_config_files_text)
+        file(REMOVE ${_cmake_old_config_files})
+      endif()
+      unset(_cmake_old_config_files)
+    endif()
+    unset(_cmake_export_file_changed)
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake" TYPE FILE FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/export_runner_sim__rosidl_typesupport_fastrtps_cppExport.cmake")
+  if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake" TYPE FILE FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/export_runner_sim__rosidl_typesupport_fastrtps_cppExport-release.cmake")
+  endif()
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/runner_sim__rosidl_typesupport_introspection_cExport.cmake")
+    file(DIFFERENT _cmake_export_file_changed FILES
+         "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/runner_sim__rosidl_typesupport_introspection_cExport.cmake"
+         "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/runner_sim__rosidl_typesupport_introspection_cExport.cmake")
+    if(_cmake_export_file_changed)
+      file(GLOB _cmake_old_config_files "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/runner_sim__rosidl_typesupport_introspection_cExport-*.cmake")
+      if(_cmake_old_config_files)
+        string(REPLACE ";" ", " _cmake_old_config_files_text "${_cmake_old_config_files}")
+        message(STATUS "Old export file \"$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/runner_sim__rosidl_typesupport_introspection_cExport.cmake\" will be replaced.  Removing files [${_cmake_old_config_files_text}].")
+        unset(_cmake_old_config_files_text)
+        file(REMOVE ${_cmake_old_config_files})
+      endif()
+      unset(_cmake_old_config_files)
+    endif()
+    unset(_cmake_export_file_changed)
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake" TYPE FILE FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/runner_sim__rosidl_typesupport_introspection_cExport.cmake")
+  if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake" TYPE FILE FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/runner_sim__rosidl_typesupport_introspection_cExport-release.cmake")
+  endif()
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/runner_sim__rosidl_typesupport_cExport.cmake")
+    file(DIFFERENT _cmake_export_file_changed FILES
+         "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/runner_sim__rosidl_typesupport_cExport.cmake"
+         "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/runner_sim__rosidl_typesupport_cExport.cmake")
+    if(_cmake_export_file_changed)
+      file(GLOB _cmake_old_config_files "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/runner_sim__rosidl_typesupport_cExport-*.cmake")
+      if(_cmake_old_config_files)
+        string(REPLACE ";" ", " _cmake_old_config_files_text "${_cmake_old_config_files}")
+        message(STATUS "Old export file \"$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/runner_sim__rosidl_typesupport_cExport.cmake\" will be replaced.  Removing files [${_cmake_old_config_files_text}].")
+        unset(_cmake_old_config_files_text)
+        file(REMOVE ${_cmake_old_config_files})
+      endif()
+      unset(_cmake_old_config_files)
+    endif()
+    unset(_cmake_export_file_changed)
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake" TYPE FILE FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/runner_sim__rosidl_typesupport_cExport.cmake")
+  if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake" TYPE FILE FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/runner_sim__rosidl_typesupport_cExport-release.cmake")
+  endif()
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/runner_sim__rosidl_typesupport_introspection_cppExport.cmake")
+    file(DIFFERENT _cmake_export_file_changed FILES
+         "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/runner_sim__rosidl_typesupport_introspection_cppExport.cmake"
+         "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/runner_sim__rosidl_typesupport_introspection_cppExport.cmake")
+    if(_cmake_export_file_changed)
+      file(GLOB _cmake_old_config_files "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/runner_sim__rosidl_typesupport_introspection_cppExport-*.cmake")
+      if(_cmake_old_config_files)
+        string(REPLACE ";" ", " _cmake_old_config_files_text "${_cmake_old_config_files}")
+        message(STATUS "Old export file \"$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/runner_sim__rosidl_typesupport_introspection_cppExport.cmake\" will be replaced.  Removing files [${_cmake_old_config_files_text}].")
+        unset(_cmake_old_config_files_text)
+        file(REMOVE ${_cmake_old_config_files})
+      endif()
+      unset(_cmake_old_config_files)
+    endif()
+    unset(_cmake_export_file_changed)
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake" TYPE FILE FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/runner_sim__rosidl_typesupport_introspection_cppExport.cmake")
+  if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake" TYPE FILE FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/runner_sim__rosidl_typesupport_introspection_cppExport-release.cmake")
+  endif()
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/runner_sim__rosidl_typesupport_cppExport.cmake")
+    file(DIFFERENT _cmake_export_file_changed FILES
+         "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/runner_sim__rosidl_typesupport_cppExport.cmake"
+         "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/runner_sim__rosidl_typesupport_cppExport.cmake")
+    if(_cmake_export_file_changed)
+      file(GLOB _cmake_old_config_files "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/runner_sim__rosidl_typesupport_cppExport-*.cmake")
+      if(_cmake_old_config_files)
+        string(REPLACE ";" ", " _cmake_old_config_files_text "${_cmake_old_config_files}")
+        message(STATUS "Old export file \"$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/runner_sim__rosidl_typesupport_cppExport.cmake\" will be replaced.  Removing files [${_cmake_old_config_files_text}].")
+        unset(_cmake_old_config_files_text)
+        file(REMOVE ${_cmake_old_config_files})
+      endif()
+      unset(_cmake_old_config_files)
+    endif()
+    unset(_cmake_export_file_changed)
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake" TYPE FILE FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/runner_sim__rosidl_typesupport_cppExport.cmake")
+  if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake" TYPE FILE FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/runner_sim__rosidl_typesupport_cppExport-release.cmake")
+  endif()
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_generator_pyExport.cmake")
+    file(DIFFERENT _cmake_export_file_changed FILES
+         "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_generator_pyExport.cmake"
+         "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/export_runner_sim__rosidl_generator_pyExport.cmake")
+    if(_cmake_export_file_changed)
+      file(GLOB _cmake_old_config_files "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_generator_pyExport-*.cmake")
+      if(_cmake_old_config_files)
+        string(REPLACE ";" ", " _cmake_old_config_files_text "${_cmake_old_config_files}")
+        message(STATUS "Old export file \"$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake/export_runner_sim__rosidl_generator_pyExport.cmake\" will be replaced.  Removing files [${_cmake_old_config_files_text}].")
+        unset(_cmake_old_config_files_text)
+        file(REMOVE ${_cmake_old_config_files})
+      endif()
+      unset(_cmake_old_config_files)
+    endif()
+    unset(_cmake_export_file_changed)
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake" TYPE FILE FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/export_runner_sim__rosidl_generator_pyExport.cmake")
+  if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/runner_sim/cmake" TYPE FILE FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/CMakeFiles/Export/56f582f601d5488d5c7c7f509a40473e/export_runner_sim__rosidl_generator_pyExport-release.cmake")
+  endif()
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for each subdirectory.
+  include("/home/beelzebub/Diploma/diploma_ws/build/runner_sim/runner_sim__py/cmake_install.cmake")
+  include("/home/beelzebub/Diploma/diploma_ws/build/runner_sim/runner_sim__rs/cmake_install.cmake")
+
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)

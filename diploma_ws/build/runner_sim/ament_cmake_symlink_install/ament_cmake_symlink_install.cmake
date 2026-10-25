@@ -315,11 +315,83 @@ message(STATUS "Execute custom install script")
 
 # begin of custom install code
 
-# install("TARGETS" "lidar_localization_node" "ground_truth_visualization_tf_node" "localization_visualization_node" "DESTINATION" "lib/runner_sim")
+# install(FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_index/share/ament_index/resource_index/rosidl_interfaces/runner_sim" "DESTINATION" "share/ament_index/resource_index/rosidl_interfaces")
+ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_index/share/ament_index/resource_index/rosidl_interfaces/runner_sim" "DESTINATION" "share/ament_index/resource_index/rosidl_interfaces")
+
+# install(FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_generator_type_description/runner_sim/msg/MissionCommand.json" "DESTINATION" "share/runner_sim/msg")
+ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_generator_type_description/runner_sim/msg/MissionCommand.json" "DESTINATION" "share/runner_sim/msg")
+
+# install(FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_generator_type_description/runner_sim/msg/MissionStatus.json" "DESTINATION" "share/runner_sim/msg")
+ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_generator_type_description/runner_sim/msg/MissionStatus.json" "DESTINATION" "share/runner_sim/msg")
+
+# install(DIRECTORY "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_generator_c/runner_sim/" "DESTINATION" "include/runner_sim/runner_sim" "PATTERN" "*.h")
+ament_cmake_symlink_install_directory("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" DIRECTORY "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_generator_c/runner_sim/" "DESTINATION" "include/runner_sim/runner_sim" "PATTERN" "*.h")
+
+# install(FILES "/opt/ros/jazzy/lib/python3.12/site-packages/ament_package/template/environment_hook/library_path.sh" "DESTINATION" "share/runner_sim/environment")
+ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/opt/ros/jazzy/lib/python3.12/site-packages/ament_package/template/environment_hook/library_path.sh" "DESTINATION" "share/runner_sim/environment")
+
+# install(FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_environment_hooks/library_path.dsv" "DESTINATION" "share/runner_sim/environment")
+ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_environment_hooks/library_path.dsv" "DESTINATION" "share/runner_sim/environment")
+
+# install(DIRECTORY "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_typesupport_fastrtps_c/runner_sim/" "DESTINATION" "include/runner_sim/runner_sim" "PATTERN_EXCLUDE" "*.cpp")
+ament_cmake_symlink_install_directory("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" DIRECTORY "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_typesupport_fastrtps_c/runner_sim/" "DESTINATION" "include/runner_sim/runner_sim" "PATTERN_EXCLUDE" "*.cpp")
+
+# install(DIRECTORY "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_generator_cpp/runner_sim/" "DESTINATION" "include/runner_sim/runner_sim" "PATTERN" "*.hpp")
+ament_cmake_symlink_install_directory("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" DIRECTORY "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_generator_cpp/runner_sim/" "DESTINATION" "include/runner_sim/runner_sim" "PATTERN" "*.hpp")
+
+# install(DIRECTORY "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_typesupport_fastrtps_cpp/runner_sim/" "DESTINATION" "include/runner_sim/runner_sim" "PATTERN_EXCLUDE" "*.cpp")
+ament_cmake_symlink_install_directory("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" DIRECTORY "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_typesupport_fastrtps_cpp/runner_sim/" "DESTINATION" "include/runner_sim/runner_sim" "PATTERN_EXCLUDE" "*.cpp")
+
+# install(DIRECTORY "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_typesupport_introspection_c/runner_sim/" "DESTINATION" "include/runner_sim/runner_sim" "PATTERN" "*.h")
+ament_cmake_symlink_install_directory("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" DIRECTORY "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_typesupport_introspection_c/runner_sim/" "DESTINATION" "include/runner_sim/runner_sim" "PATTERN" "*.h")
+
+# install(DIRECTORY "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_typesupport_introspection_cpp/runner_sim/" "DESTINATION" "include/runner_sim/runner_sim" "PATTERN" "*.hpp")
+ament_cmake_symlink_install_directory("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" DIRECTORY "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_typesupport_introspection_cpp/runner_sim/" "DESTINATION" "include/runner_sim/runner_sim" "PATTERN" "*.hpp")
+
+# install(FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_environment_hooks/pythonpath.sh" "DESTINATION" "share/runner_sim/environment")
+ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_environment_hooks/pythonpath.sh" "DESTINATION" "share/runner_sim/environment")
+
+# install(FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_environment_hooks/pythonpath.dsv" "DESTINATION" "share/runner_sim/environment")
+ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_environment_hooks/pythonpath.dsv" "DESTINATION" "share/runner_sim/environment")
+
+# install(DIRECTORY "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_python/runner_sim/runner_sim.egg-info/" "DESTINATION" "lib/python3.12/site-packages/runner_sim-0.1.0-py3.12.egg-info")
+ament_cmake_symlink_install_directory("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" DIRECTORY "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_python/runner_sim/runner_sim.egg-info/" "DESTINATION" "lib/python3.12/site-packages/runner_sim-0.1.0-py3.12.egg-info")
+
+# install(DIRECTORY "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_generator_py/runner_sim/" "DESTINATION" "lib/python3.12/site-packages/runner_sim" "PATTERN_EXCLUDE" "*.pyc" "PATTERN_EXCLUDE" "__pycache__")
+ament_cmake_symlink_install_directory("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" DIRECTORY "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_generator_py/runner_sim/" "DESTINATION" "lib/python3.12/site-packages/runner_sim" "PATTERN_EXCLUDE" "*.pyc" "PATTERN_EXCLUDE" "__pycache__")
+
+# install("TARGETS" "runner_sim_s__rosidl_typesupport_fastrtps_c" "DESTINATION" "lib/python3.12/site-packages/runner_sim")
 include("/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_symlink_install_targets_0_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
+
+# install("TARGETS" "runner_sim_s__rosidl_typesupport_introspection_c" "DESTINATION" "lib/python3.12/site-packages/runner_sim")
+include("/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_symlink_install_targets_1_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
+
+# install("TARGETS" "runner_sim_s__rosidl_typesupport_c" "DESTINATION" "lib/python3.12/site-packages/runner_sim")
+include("/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_symlink_install_targets_2_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
+
+# install(DIRECTORY "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_generator_rs/runner_sim/rust" "DESTINATION" "share/runner_sim")
+ament_cmake_symlink_install_directory("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" DIRECTORY "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_generator_rs/runner_sim/rust" "DESTINATION" "share/runner_sim")
+
+# install(FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_adapter/runner_sim/msg/MissionCommand.idl" "DESTINATION" "share/runner_sim/msg")
+ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_adapter/runner_sim/msg/MissionCommand.idl" "DESTINATION" "share/runner_sim/msg")
+
+# install(FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_adapter/runner_sim/msg/MissionStatus.idl" "DESTINATION" "share/runner_sim/msg")
+ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_adapter/runner_sim/msg/MissionStatus.idl" "DESTINATION" "share/runner_sim/msg")
+
+# install(FILES "/home/beelzebub/Diploma/diploma_ws/src/runner_sim/msg/MissionCommand.msg" "DESTINATION" "share/runner_sim/msg")
+ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/src/runner_sim/msg/MissionCommand.msg" "DESTINATION" "share/runner_sim/msg")
+
+# install(FILES "/home/beelzebub/Diploma/diploma_ws/src/runner_sim/msg/MissionStatus.msg" "DESTINATION" "share/runner_sim/msg")
+ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/src/runner_sim/msg/MissionStatus.msg" "DESTINATION" "share/runner_sim/msg")
+
+# install("TARGETS" "lidar_localization_node" "ground_truth_visualization_tf_node" "localization_visualization_node" "mission_manager_node" "motion_controller_node" "DESTINATION" "lib/runner_sim")
+include("/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_symlink_install_targets_3_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
 
 # install(DIRECTORY "config" "launch" "models" "worlds" "DESTINATION" "share/runner_sim")
 ament_cmake_symlink_install_directory("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" DIRECTORY "config" "launch" "models" "worlds" "DESTINATION" "share/runner_sim")
+
+# install(DIRECTORY "missions" "DESTINATION" "share/runner_sim")
+ament_cmake_symlink_install_directory("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" DIRECTORY "missions" "DESTINATION" "share/runner_sim")
 
 # install(FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/runner_sim" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/runner_sim" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
@@ -356,6 +428,30 @@ ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner
 
 # install(FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_index/share/ament_index/resource_index/packages/runner_sim" "DESTINATION" "share/ament_index/resource_index/packages")
 ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_index/share/ament_index/resource_index/packages/runner_sim" "DESTINATION" "share/ament_index/resource_index/packages")
+
+# install(FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_cmake/rosidl_cmake-extras.cmake" "DESTINATION" "share/runner_sim/cmake")
+ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_cmake/rosidl_cmake-extras.cmake" "DESTINATION" "share/runner_sim/cmake")
+
+# install(FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_export_include_directories/ament_cmake_export_include_directories-extras.cmake" "DESTINATION" "share/runner_sim/cmake")
+ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_export_include_directories/ament_cmake_export_include_directories-extras.cmake" "DESTINATION" "share/runner_sim/cmake")
+
+# install(FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_export_libraries/ament_cmake_export_libraries-extras.cmake" "DESTINATION" "share/runner_sim/cmake")
+ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_export_libraries/ament_cmake_export_libraries-extras.cmake" "DESTINATION" "share/runner_sim/cmake")
+
+# install(FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_export_targets/ament_cmake_export_targets-extras.cmake" "DESTINATION" "share/runner_sim/cmake")
+ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_export_targets/ament_cmake_export_targets-extras.cmake" "DESTINATION" "share/runner_sim/cmake")
+
+# install(FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_cmake/rosidl_cmake_export_typesupport_targets-extras.cmake" "DESTINATION" "share/runner_sim/cmake")
+ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_cmake/rosidl_cmake_export_typesupport_targets-extras.cmake" "DESTINATION" "share/runner_sim/cmake")
+
+# install(FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_export_dependencies/ament_cmake_export_dependencies-extras.cmake" "DESTINATION" "share/runner_sim/cmake")
+ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_export_dependencies/ament_cmake_export_dependencies-extras.cmake" "DESTINATION" "share/runner_sim/cmake")
+
+# install(FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake" "DESTINATION" "share/runner_sim/cmake")
+ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake" "DESTINATION" "share/runner_sim/cmake")
+
+# install(FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_cmake/rosidl_cmake_aggregate_target-extras.cmake" "DESTINATION" "share/runner_sim/cmake")
+ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/rosidl_cmake/rosidl_cmake_aggregate_target-extras.cmake" "DESTINATION" "share/runner_sim/cmake")
 
 # install(FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_core/runner_simConfig.cmake" "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_core/runner_simConfig-version.cmake" "DESTINATION" "share/runner_sim/cmake")
 ament_cmake_symlink_install_files("/home/beelzebub/Diploma/diploma_ws/src/runner_sim" FILES "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_core/runner_simConfig.cmake" "/home/beelzebub/Diploma/diploma_ws/build/runner_sim/ament_cmake_core/runner_simConfig-version.cmake" "DESTINATION" "share/runner_sim/cmake")

@@ -1,0 +1,12 @@
+# colcon build outputs (top level and workspace)
+build/
+install/
+log/
+
+# Demos and editor settings
+demos/
+.vscode/
+
+# Python caches
+__pycache__/
+*.py[cod]

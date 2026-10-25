@@ -1,0 +1,6 @@
+runner_number,x_m,y_m,circle_radius_m,speed_percent,hard_point
+1,0,5,0,50,true
+2,0,6,0,50,true
+3,0,7,0,50,true
+
+

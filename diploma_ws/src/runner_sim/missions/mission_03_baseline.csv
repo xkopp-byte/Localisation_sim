@@ -1,0 +1,9 @@
+runner_number,x_m,y_m,circle_radius_m,speed_percent,hard_point,start_delay_s
+# Run with 3 runners (spawn x = -2, 0, 2). Coordinates are in the world frame.
+# Reference run: runner_02 and runner_03 park beside the aisle and then stand still
+# (static obstacles only). runner_01 starts after 15 s and drives the same path
+# as in mission_03_interference.csv.
+1,5,0,0,30,true,15
+1,-5,0,0,30,true
+2,0,-1.5,0,40,true
+3,2,1.5,0,40,true

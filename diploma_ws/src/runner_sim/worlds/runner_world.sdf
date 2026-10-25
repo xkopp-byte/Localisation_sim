@@ -3,6 +3,7 @@
   <world name="runner_world">
     <plugin filename="libgz-sim-physics-system.so" name="gz::sim::systems::Physics"/>
     <plugin filename="libgz-sim8-sensors-system.so" name="gz::sim::systems::Sensors"/>
+    <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu"/>
     <plugin filename="libgz-sim-user-commands-system.so" name="gz::sim::systems::UserCommands"/>
     <plugin filename="libgz-sim-scene-broadcaster-system.so" name="gz::sim::systems::SceneBroadcaster"/>
 

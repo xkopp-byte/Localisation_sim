@@ -104,6 +104,7 @@ lidar_localization_node: /opt/ros/jazzy/lib/libnav_msgs__rosidl_typesupport_intr
 lidar_localization_node: /opt/ros/jazzy/lib/libnav_msgs__rosidl_typesupport_introspection_cpp.so
 lidar_localization_node: /opt/ros/jazzy/lib/libnav_msgs__rosidl_typesupport_cpp.so
 lidar_localization_node: /opt/ros/jazzy/lib/libnav_msgs__rosidl_generator_py.so
+lidar_localization_node: librunner_sim__rosidl_typesupport_cpp.so
 lidar_localization_node: /opt/ros/jazzy/lib/liblibstatistics_collector.so
 lidar_localization_node: /opt/ros/jazzy/lib/librcl.so
 lidar_localization_node: /opt/ros/jazzy/lib/librmw_implementation.so
@@ -178,12 +179,13 @@ lidar_localization_node: /opt/ros/jazzy/lib/libbuiltin_interfaces__rosidl_typesu
 lidar_localization_node: /opt/ros/jazzy/lib/librosidl_typesupport_introspection_cpp.so
 lidar_localization_node: /opt/ros/jazzy/lib/librosidl_typesupport_introspection_c.so
 lidar_localization_node: /opt/ros/jazzy/lib/libbuiltin_interfaces__rosidl_typesupport_cpp.so
-lidar_localization_node: /opt/ros/jazzy/lib/librosidl_typesupport_cpp.so
 lidar_localization_node: /opt/ros/jazzy/lib/libbuiltin_interfaces__rosidl_generator_py.so
 lidar_localization_node: /opt/ros/jazzy/lib/libservice_msgs__rosidl_typesupport_c.so
 lidar_localization_node: /opt/ros/jazzy/lib/libbuiltin_interfaces__rosidl_typesupport_c.so
 lidar_localization_node: /opt/ros/jazzy/lib/libservice_msgs__rosidl_generator_c.so
 lidar_localization_node: /opt/ros/jazzy/lib/libbuiltin_interfaces__rosidl_generator_c.so
+lidar_localization_node: /opt/ros/jazzy/lib/librosidl_typesupport_cpp.so
+lidar_localization_node: librunner_sim__rosidl_generator_c.so
 lidar_localization_node: /opt/ros/jazzy/lib/librosidl_typesupport_c.so
 lidar_localization_node: /opt/ros/jazzy/lib/librcpputils.so
 lidar_localization_node: /opt/ros/jazzy/lib/librosidl_runtime_c.so

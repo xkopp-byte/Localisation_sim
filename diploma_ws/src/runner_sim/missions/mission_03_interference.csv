@@ -1,0 +1,10 @@
+runner_number,x_m,y_m,circle_radius_m,speed_percent,hard_point,start_delay_s
+# Run with 3 runners (spawn x = -2, 0, 2). Coordinates are in the world frame.
+# runner_01 drives the same path and timing as in mission_03_baseline.csv.
+1,5,0,0,30,true,15
+1,-5,0,0,30,true
+# runner_02 drives ahead of runner_01 in the same direction (moving object in front).
+2,6.5,0,0,40,true,15
+# runner_03 moves to a parallel lane and passes runner_01 in the opposite direction.
+3,3,-1.2,0,40,true,15
+3,-6,-1.2,0,40,true

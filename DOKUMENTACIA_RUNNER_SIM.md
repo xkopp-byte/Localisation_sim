@@ -42,8 +42,10 @@ Runner má dva 2D LiDARy:
 - predný pravý LiDAR (`front_right_lidar`),
 - zadný ľavý LiDAR (`rear_left_lidar`).
 
-Oba LiDARy sú umiestnené vo výške 1,6 m, teda mierne nad hornou plochou
-robotického kvádra. Ich pôdorysné súradnice sú mimo rozmerov kvádra, aby
+Oba LiDARy sú umiestnené vo výške 0,85 m nad zemou (v modeli
+`lidar_height - body_z` voči `base_link`, ktorý leží na úrovni podlahy), teda
+pod hornou plochou robotického kvádra (1,5 m). Vďaka tomu LiDAR vidí aj
+ostatných runnerov. Ich pôdorysné súradnice sú mimo rozmerov kvádra, aby
 kolízna geometria vlastného robota nezakrývala celé okolie. Predný LiDAR je
 orientovaný dopredu a zadný LiDAR dozadu. Počiatočná konfigurácia používa
 rozsah 30 m, minimálnu vzdialenosť 0,12 m, frekvenciu 10 Hz a uhlové pokrytie
@@ -62,7 +64,7 @@ Tieto hodnoty sú dočasné a majú byť nahradené charakteristikou reálneho s
 
 ### 3.3 Odometia a enkódery
 
-Plugin diferenciálneho pohonu publikuje odometriu kolies. Táto odometria predstavuje merací vstup lokalizácie, nie ground truth. V ďalšej fáze sa musí overiť, či simulované chyby odometrie dostatočne reprezentujú chyby reálneho robota, najmä:
+Plugin diferenciálneho pohonu publikuje odometriu kolies. Táto odometria nie je ground truth; v aktuálnej verzii sa nepoužíva ani na riadenie, ani v EKF (pozri kapitolu 7), zostáva dostupná na porovnanie. V ďalšej fáze sa musí overiť, či simulované chyby odometrie dostatočne reprezentujú chyby reálneho robota, najmä:
 
 - nepresnosť polomeru kolies,
 - nepresnosť rozchodu kolies,
@@ -154,6 +156,10 @@ Pre robota `runner_01` sú plánované najmä tieto témy:
 | `/runner_01/sensors/imu/data` | `sensor_msgs/msg/Imu` | meranie IMU |
 | `/runner_01/wheel/odometry` | `nav_msgs/msg/Odometry` | odometria kolies |
 | `/runner_01/ground_truth/odometry` | `nav_msgs/msg/Odometry` | vyhodnocovacia skutočná poloha a rýchlosť |
+| `/runner_01/icp/odometry` | `nav_msgs/msg/Odometry` | LiDAR odometria (integrované ICP) |
+| `/runner_01/ekf/odometry` | `nav_msgs/msg/Odometry` | odhad EKF |
+| `/visualization_marker_array` | `visualization_msgs/msg/MarkerArray` | obrysy robotov a elipsa neistoty `runner_01` |
+| `/clock` | `rosgraph_msgs/msg/Clock` | simulačný čas pre všetky node s `use_sim_time` |
 
 Pri šiestich robotoch sa rovnaké rozhranie opakuje pod príslušným prefixom `runner_01` až `runner_06`. Namespacing je dôležitý, aby sa správy robotov nemiešali.
 
@@ -174,32 +180,41 @@ LiDARu zostávajú zachované na samostatnú kontrolu a diagnostiku.
 ## 7. Matematický model ICP a EKF lokalizácie
 
 Lokalizačný algoritmus je implementovaný v samostatnej C++ node
-`lidar_localization_node`. Algoritmus odhaduje rovinnú polohu mobilného robota
-v stavovom vektore
+`lidar_localization_node`. Robot sa riadi podľa ground truth (pozri kapitolu 9),
+lokalizácia preto beží nezávisle a jej odhad sa iba porovnáva so skutočnou
+polohou. EKF odhaduje stavový vektor
 
 $$
 \mathbf{x}_k =
 \begin{bmatrix}
-x_k \\ y_k \\ \theta_k
-\end{bmatrix},
+x_k & y_k & \theta_k & v_{x,k} & v_{y,k} & \omega_k
+\end{bmatrix}^T,
 $$
 
-kde $x_k$ a $y_k$ sú súradnice robota v globálnom rámci a $\theta_k$ je jeho
-orientácia okolo osi $z$. Vstupný vektor diferenciálneho podvozka je
+kde $x_k$, $y_k$ a $\theta_k$ sú poloha a orientácia robota v lokálnom rámci
+`<robot_name>/odom` a $v_x$, $v_y$, $\omega$ sú rýchlosti v rámci robota
+(`base_link`). Wheel odometria nie je vstupom filtra, pretože v Gazebo je
+takmer bezchybná a zakryla by chyby LiDAR odometrie, ktoré sú predmetom práce.
 
-$$
-\mathbf{u}_k =
-\begin{bmatrix}
-v_k \\ \omega_k
-\end{bmatrix},
-$$
+Filter má dva režimy, ktoré sa volia pri spustení parametrom `ekf_mode`:
 
-kde $v_k$ je pozdĺžna rýchlosť a $\omega_k$ uhlová rýchlosť.
+| Režim | Vstupy EKF |
+|---|---|
+| `ICP` | iba LiDAR odometria (ICP) |
+| `IMU_ICP` | LiDAR odometria (ICP) + uhlová rýchlosť z gyroskopu IMU |
 
-### 7.1 ICP registrácia skenov
+### 7.1 Predspracovanie skenu
 
-Každý platný lúč LiDARu sa prevedie na bod v lokálnom rámci robota. Pre lúč
-so vzdialenosťou $\rho_i$ a uhlom $\alpha_i$ platí
+Oba LiDARy sú umiestnené mimo rohov kvádra robota, preto časť lúčov dopadá na
+vlastné telo robota. Tieto body sa pohybujú spolu s robotom a ťahali by
+odhad ICP k nulovému pohybu. Pri zlučovaní skenov sa preto odstránia všetky
+body vnútri pôdorysu robota zväčšeného o rezervu `self_filter_margin`
+(predvolene 0,1 m). Body ostatných robotov sa zámerne **neodstraňujú**,
+pretože ich vplyv na lokalizáciu je predmetom skúmania.
+
+### 7.2 ICP registrácia skenov (point-to-line)
+
+Každý platný lúč zlúčeného skenu sa prevedie na bod v rámci robota
 
 $$
 \mathbf{p}_i =
@@ -208,164 +223,154 @@ $$
 \end{bmatrix}.
 $$
 
-Nech $P_A=\{\mathbf{p}_{A,i}\}$ označuje aktuálny sken a
-$P_B=\{\mathbf{p}_{B,i}\}$ referenčný sken alebo body známej mapy. Hľadaná
-rovinná transformácia je
+Nech $P_A=\{\mathbf{p}_{A,i}\}$ je aktuálny sken a $P_B=\{\mathbf{p}_{B,j}\}$
+predchádzajúci (referenčný) sken. Pre každý referenčný bod sa z jeho susedov
+(metóda hlavných komponentov v okne $\pm 2$ lúčov) určí normála povrchu
+$\mathbf{n}_j$. Hľadá sa transformácia
 
 $$
-\mathbf{p}_{B,i} \approx R(\theta)\mathbf{p}_{A,i}+\mathbf{t},
+\mathbf{p}_{B,j} \approx R(\theta)\mathbf{p}_{A,i}+\mathbf{t},
+$$
+
+ktorá minimalizuje vzdialenosti bodov od referenčných priamok (point-to-line):
+
+$$
+r_i=\mathbf{n}_j^T\left(R(\theta)\mathbf{p}_{A,i}+\mathbf{t}-\mathbf{p}_{B,j}\right),
 \qquad
-\mathbf{t}=\begin{bmatrix}t_x\\t_y\end{bmatrix},
+J(\theta,\mathbf{t})=\frac{1}{2}\sum_i w_i r_i^2 ,
 $$
 
-pričom rotačná matica a jej derivácia sú
-
-$$
-R(\theta)=
-\begin{bmatrix}
-\cos\theta & -\sin\theta \\
-\sin\theta & \cos\theta
-\end{bmatrix},
-\qquad
-\frac{\partial R}{\partial\theta}=
-\begin{bmatrix}
--\sin\theta & -\cos\theta \\
-\cos\theta & -\sin\theta
-\end{bmatrix}.
-$$
-
-Parametre transformácie sa určia minimalizáciou kvadratickej účelovej funkcie
-
-$$
-J(\theta,\mathbf{t})=
-\frac{1}{2}\sum_{i=1}^{N}
-\left\|R(\theta)\mathbf{p}_{A,i}+\mathbf{t}-\mathbf{p}_{B,i}\right\|^2.
-$$
-
-Pre aktuálny odhad $\hat{\theta}$ a $\hat{\mathbf{t}}$ je reziduum
-
-$$
-\mathbf{r}_i=
-R(\hat{\theta})\mathbf{p}_{A,i}+
-\hat{\mathbf{t}}-\mathbf{p}_{B,i}.
-$$
-
-Jacobián rezidua podľa parametrov
+kde $j$ je najbližší referenčný bod (vyhľadaný v pravidelnej mriežke s
+maximálnou vzdialenosťou korešpondencie) a $w_i$ je Huberova váha
+$w_i=\min(1, k/|r_i|)$. Jacobián rezidua podľa
 $\boldsymbol{\xi}=[\theta,t_x,t_y]^T$ je
 
 $$
-J_i=\frac{\partial\mathbf{r}_i}{\partial\boldsymbol{\xi}}=
+J_i=
 \begin{bmatrix}
-\frac{\partial R}{\partial\theta}\mathbf{p}_{A,i} & 1 & 0 \\
- & 0 & 1
-\end{bmatrix}.
+\mathbf{n}_j^T\dfrac{\partial R}{\partial\theta}\mathbf{p}_{A,i} & n_{j,x} & n_{j,y}
+\end{bmatrix},
 $$
 
-Gaussov-Newtonov krok sa vypočíta zo sústavy
+a Gaussov-Newtonov krok
 
 $$
-H=\sum_i J_i^T J_i+\Lambda,\qquad
-\mathbf{g}=\sum_i J_i^T\mathbf{r}_i,
+H=\sum_i w_iJ_i^TJ_i,\qquad
+\mathbf{g}=\sum_i w_iJ_i^Tr_i,\qquad
+\Delta\boldsymbol{\xi}=-H^{-1}\mathbf{g}.
 $$
 
+Počiatočný odhad ICP je pohyb predikovaný z rýchlostí EKF
+($[v_x\Delta t,\ v_y\Delta t,\ \omega\Delta t]$); v režime `IMU_ICP` je tak
+otočenie podporené gyroskopom.
+
+Transformácia nájdená ICP mapuje body aktuálneho skenu do rámca
+predchádzajúceho skenu. Ak $T_k$ je poloha robota v čase $k$, platí
+$\mathbf{p}_{B}=T_{k-1}^{-1}T_k\,\mathbf{p}_{A}$, takže výsledok
+$(R(\theta),\mathbf{t})$ je **priamo** relatívny pohyb robota medzi skenmi
+(nie jeho inverzia):
+
 $$
-\Delta\boldsymbol{\xi}=-H^{-1}\mathbf{g},
+\Delta\mathbf{x}_k=\begin{bmatrix}t_x & t_y & \theta\end{bmatrix}^T .
+$$
+
+Kovariancia odhadu sa určí z Gaussovho-Newtonovho Hessiánu:
+
+$$
+\Sigma_{\mathrm{ICP}} = s\,\hat\sigma^2 H^{-1} + \Sigma_{\min},
 \qquad
-\boldsymbol{\xi}_{j+1}=\boldsymbol{\xi}_j+\Delta\boldsymbol{\xi},
+\hat\sigma^2=\frac{1}{N}\sum_i r_i^2 ,
 $$
 
-kde $\Lambda$ je malé tlmiace číslo zlepšujúce numerickú stabilitu. V každej
-ICP iterácii sa najprv transformujú body aktuálneho skenu, následne sa pre
-každý bod vyhľadá najbližšia referencia a potom sa odhadne nový transformačný
-parametr. Iterácie sa ukončia po dosiahnutí tolerancie, malej zmene parametrov
-alebo po dosiahnutí maximálneho počtu iterácií. Korešpondencie s príliš veľkou
-vzdialenosťou sa zamietnu.
+kde $s$ (`icp_covariance_scale`) a $\Sigma_{\min}$ kompenzujú známu
+prílišnú sebadôveru tohto odhadu. Pri degenerovanej geometrii (napr. dlhá
+chodba) má $H$ malé vlastné číslo a kovariancia v neurčenom smere rastie.
+Výsledok sa zamietne, ak je podiel korešpondencií menší ako
+`icp_min_inlier_ratio` alebo je krok nereálne veľký.
 
-V aktuálnej implementácii je referenciou predchádzajúci sken, takže ICP
-poskytuje relatívny pohyb. Ak ICP nájde transformáciu aktuálneho skenu do
-predchádzajúceho skenu $(R_{AB},\mathbf{t}_{AB})$, pohyb robota je daný
-inverznou transformáciou
+### 7.3 Model pohybu (konštantná rýchlosť)
 
 $$
-R_{\mathrm{robot}}=R_{AB}^{T},\qquad
-\mathbf{t}_{\mathrm{robot}}=-R_{AB}^{T}\mathbf{t}_{AB}.
-$$
-
-Pri použití známej okupačnej mapy je možné rovnaký postup interpretovať ako
-priamy odhad globálnej transformácie skenu do mapového rámca.
-
-### 7.2 Nelineárny model pohybu
-
-Prechodová funkcia diferenciálneho podvozka je
-
-$$
-\mathbf{x}_{k+1}=f(\mathbf{x}_k,\mathbf{u}_k)=
+f(\mathbf{x},\Delta t)=
 \begin{bmatrix}
-x_k+v_k\Delta t\cos\theta_k \\
-y_k+v_k\Delta t\sin\theta_k \\
-	heta_k+\omega_k\Delta t
-\end{bmatrix}+\mathbf{w}_k,
+x+(v_x\cos\theta-v_y\sin\theta)\Delta t \\
+y+(v_x\sin\theta+v_y\cos\theta)\Delta t \\
+\theta+\omega\Delta t \\
+v_x \\ v_y \\ \omega
+\end{bmatrix},
+\qquad
+P^-=A P A^T + Q,
 $$
 
-kde $\mathbf{w}_k$ je procesný šum s kovariančnou maticou $Q_k$. Jacobian
-prechodovej funkcie podľa stavu je
+kde $A=\partial f/\partial\mathbf{x}$ a procesný šum je biely šum zrýchlení
+$Q=\mathrm{diag}(0,0,0,\sigma_{a_x}^2,\sigma_{a_y}^2,\sigma_{\alpha}^2)\Delta t$.
+
+### 7.4 Merania EKF
+
+**LiDAR odometria.** Relatívny pohyb z ICP za interval $\Delta t$ medzi skenmi
+sa vkladá ako priemerná rýchlosť v rámci robota:
 
 $$
-A_k=\frac{\partial f}{\partial\mathbf{x}}=
+\mathbf{z}_{\mathrm{ICP}}=\frac{\Delta\mathbf{x}_k}{\Delta t},
+\qquad
+C_{\mathrm{ICP}}=
 \begin{bmatrix}
-1 & 0 & -v_k\Delta t\sin\theta_k \\
-0 & 1 &  v_k\Delta t\cos\theta_k \\
-0 & 0 & 1
-\end{bmatrix}.
-$$
-
-### 7.3 Rozšírený Kalmanov filter
-
-ICP poskytuje meranie polohy a orientácie v rovnakom stavovom priestore,
-preto meracia funkcia a jej Jacobian majú tvar
-
-$$
-\mathbf{z}_k=h(\mathbf{x}_k)+\mathbf{v}_k=\mathbf{x}_k+\mathbf{v}_k,
+0_{3\times3} & I_3
+\end{bmatrix},
 \qquad
-C_k=\frac{\partial h}{\partial\mathbf{x}}=I_3,
+R_{\mathrm{ICP}}=\frac{\Sigma_{\mathrm{ICP}}}{\Delta t^2}.
 $$
 
-kde $\mathbf{v}_k$ je merací šum s kovariančnou maticou $R_k$. EKF predikcia
-z wheel odometrie je
+**Gyroskop (iba `IMU_ICP`).** $z_{\mathrm{IMU}}=\omega_z$,
+$C_{\mathrm{IMU}}=[0\ 0\ 0\ 0\ 0\ 1]$,
+$R_{\mathrm{IMU}}=\sigma_g^2$.
+
+Aktualizácia je štandardná, kovariancia sa počíta v Josephovom tvare:
 
 $$
-\hat{\mathbf{x}}_k^- = f(\hat{\mathbf{x}}_{k-1},\mathbf{u}_k),
-\qquad
-P_k^- = A_kP_{k-1}A_k^T+Q_k.
-$$
-
-Po prijatí ICP merania sa vypočíta inovačná kovariancia, Kalmanov zisk a nový
-odhad:
-
-$$
-S_k=C_kP_k^-C_k^T+R_k,
-\qquad
-K_k=P_k^-C_k^TS_k^{-1},
+S=CP^-C^T+R,\qquad K=P^-C^TS^{-1},\qquad
+\hat{\mathbf{x}}=\hat{\mathbf{x}}^-+K(\mathbf{z}-C\hat{\mathbf{x}}^-),
 $$
 
 $$
-\hat{\mathbf{x}}_k=\hat{\mathbf{x}}_k^-+
-K_k\left(\mathbf{z}_k-h(\hat{\mathbf{x}}_k^-)\right),
+P=(I-KC)P^-(I-KC)^T+KRK^T .
 $$
 
-$$
-P_k=(I-K_kC_k)P_k^-.
-$$
+Voliteľne je možné zapnúť Mahalanobisovo hradlo
+$(\mathbf{z}-C\hat{\mathbf{x}}^-)^TS^{-1}(\mathbf{z}-C\hat{\mathbf{x}}^-)
+<\gamma$ parametrom `icp_mahalanobis_gate` (predvolene vypnuté, aby sa chybné
+ICP merania prejavili vo filtri).
 
-Rozdiel uhlov sa pred aktualizáciou normalizuje do intervalu
-$[-\pi,\pi]$, aby prechod cez hranicu $\pm\pi$ nevytvoril umelú veľkú chybu.
-Kovariancie $Q_k$ a $R_k$ sú v implementácii nastaviteľné ROS parametre.
+Keďže filter nemá absolútne merania polohy, kovariancia polohy počas jazdy
+rastie. Ak ICP ovplyvnia pohybujúce sa objekty (iní runneri), odhad sa
+systematicky odchýli, no kovariancia to nemusí zachytiť – filter sa stane
+prehnane sebaistým. Tento jav je viditeľný v RViz: skutočná poloha (zelená)
+leží mimo elipsy neistoty.
 
-Node publikuje samostatne ICP odhad na
-`/<robot_name>/icp/odometry` a filtrovaný odhad na
-`/<robot_name>/ekf/odometry`. Počiatočný stav je $(0,0,0)$ v lokálnom rámci
-`<robot_name>/odom`. Ground truth nie je vstupom filtra a slúži iba na spätné
-vyhodnotenie presnosti.
+### 7.5 Výstupy
+
+| Téma | Obsah |
+|---|---|
+| `/<robot_name>/icp/odometry` | iba integrovaná ICP odometria (poloha + kovariancia) |
+| `/<robot_name>/ekf/odometry` | odhad EKF: poloha, rýchlosti a ich kovariancie |
+| `/<robot_name>/lidar_fused` | zlúčený 360° sken bez bodov vlastného robota |
+
+Počiatočný stav je $(0,0,0)$ v rámci `<robot_name>/odom`; vizualizačná node
+ho posunie o počiatočnú polohu robota do rámca `world`. Ground truth nie je
+vstupom filtra.
+
+### 7.6 Elipsa neistoty v RViz
+
+Pre `runner_01` sa publikuje marker `runner_01/covariance_ellipse` na téme
+`/visualization_marker_array`. Z kovariancie polohy $P_{xy}$ (otočenej do
+rámca `world`) sa určia vlastné čísla $\lambda_{1,2}$ a uhol hlavnej osi
+$\varphi=\tfrac12\operatorname{atan2}(2P_{xy},P_{xx}-P_{yy})$. Pre
+pravdepodobnosť $p$ (`covariance_ellipse_confidence`, predvolene 0,95) majú
+poloosi dĺžku
+
+$$
+a_{1,2}=\sqrt{-2\ln(1-p)}\,\sqrt{\lambda_{1,2}} .
+$$
 
 ## 8. Spustenie
 
@@ -494,3 +499,48 @@ mozno da, je to iba jedna transformacia
 zmenit .sh skript aby subscriboval iba konkretny runner, mat moznost lidarovy
 
 ## co najskor na github
+
+## 9. Misie, riadenie a experiment s rušením
+
+Runnery sa riadia podľa **ground truth** (`/<robot_name>/ground_truth/odometry`),
+nie podľa odhadu EKF. Lokalizácia tak neovplyvňuje trajektóriu a rôzne režimy
+EKF je možné porovnávať na rovnakom pohybe. Súradnice v CSV misiách sú v
+rámci `world` (spoločný pre všetkých runnerov; runnery sa spawnujú na
+$x=(i-(n-1)/2)\cdot$`spawn_spacing`, $y=0$).
+
+Formát riadku misie:
+
+```text
+runner_number,x_m,y_m,circle_radius_m,speed_percent,hard_point[,start_delay_s]
+```
+
+Voliteľný 7. stĺpec `start_delay_s` oneskorí odoslanie príkazu (v simulačnom
+čase) od chvíle, keď sa riadok stane aktuálnym. Riadky začínajúce `#` sú
+komentáre.
+
+Pre porovnanie vplyvu ostatných runnerov sú pripravené dve misie pre 3 runnerov
+s rovnakou trajektóriou `runner_01`:
+
+- `mission_03_baseline.csv` – `runner_02` a `runner_03` zaparkujú mimo uličky a
+  stoja (iba statické prekážky),
+- `mission_03_interference.csv` – `runner_02` ide pred `runner_01` rovnakým
+  smerom a `runner_03` ho míňa v protismere v susednom pruhu.
+
+Orientačné výsledky (maximálna chyba polohy `runner_01` voči ground truth):
+
+| Misia | `ICP` | `IMU_ICP` |
+|---|---|---|
+| baseline | 0,19 m | 0,20 m |
+| interference | 1,77 m | 1,73 m |
+
+Runner idúci vpredu spôsobí, že ICP podhodnocuje dopredný pohyb. IMU zlepší
+orientáciu a bočný drift, ale pozdĺžnu chybu neodstráni, pretože gyroskop
+neobsahuje informáciu o translácii.
+
+Spustenie bez GUI (napr. pre dávkové experimenty):
+
+```bash
+ros2 launch runner_sim runner_sim.launch.py robot_count:=3 run_mission:=true \
+  mission_file:=$PWD/install/runner_sim/share/runner_sim/missions/mission_03_interference.csv \
+  ekf_mode:=IMU_ICP gz_extra_args:="-s --headless-rendering"
+```

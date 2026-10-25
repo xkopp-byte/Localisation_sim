@@ -11,6 +11,11 @@ def make_runner_actions(context):
     count = int(LaunchConfiguration('robot_count').perform(context))
     x_spacing = float(LaunchConfiguration('spawn_spacing').perform(context))
     localization_mode = LaunchConfiguration('localization_mode').perform(context)
+    run_mission = LaunchConfiguration('run_mission').perform(context).lower() == 'true'
+    mission_file = LaunchConfiguration('mission_file').perform(context)
+    ekf_mode = LaunchConfiguration('ekf_mode').perform(context).upper()
+    if ekf_mode not in ('ICP', 'IMU_ICP'):
+        raise RuntimeError(f"ekf_mode must be ICP or IMU_ICP, got '{ekf_mode}'")
     model = PathJoinSubstitution([FindPackageShare('runner_sim'), 'models', 'runner.urdf.xacro'])
     actions = []
 
@@ -67,7 +72,24 @@ def make_runner_actions(context):
                 'initial_x': x,
                 'initial_y': 0.0,
                 'initial_yaw': 0.0,
+                'show_covariance_ellipse': name == 'runner_01',
             }],
+            output='screen',
+        )
+        motion_controller = Node(
+            package='runner_sim',
+            executable='motion_controller_node',
+            namespace=name,
+            name='motion_controller_node',
+            parameters=[{
+                'use_sim_time': True,
+                'runner_number': index + 1,
+                'odometry_topic': 'ground_truth/odometry',
+                'command_topic': 'mission_command',
+                'status_topic': 'mission_status',
+                'cmd_vel_topic': 'cmd_vel',
+            }],
+            condition=IfCondition(str(run_mission).lower()),
             output='screen',
         )
         front_lidar_tf = Node(
@@ -98,15 +120,17 @@ def make_runner_actions(context):
             f'/{name}/ground_truth/odometry@nav_msgs/msg/Odometry[gz.msgs.Odometry',
         ]
         localization_enabled = localization_mode == 'all' or name == 'runner_01'
-        if localization_enabled:
-            bridge_arguments = [
+        if run_mission:
+            bridge_arguments.extend([
                 f'/{name}/cmd_vel@geometry_msgs/msg/Twist]gz.msgs.Twist',
+                f'/{name}/wheel/odometry@nav_msgs/msg/Odometry[gz.msgs.Odometry',
+            ])
+        if localization_enabled:
+            bridge_arguments.extend([
                 f'/{name}_lidar_front@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan',
                 f'/{name}_lidar_rear@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan',
                 f'/{name}/sensors/imu/data@sensor_msgs/msg/Imu[gz.msgs.IMU',
-                f'/{name}/wheel/odometry@nav_msgs/msg/Odometry[gz.msgs.Odometry',
-                *bridge_arguments,
-            ]
+            ])
 
         bridge = Node(
             package='ros_gz_bridge',
@@ -126,7 +150,8 @@ def make_runner_actions(context):
                 'front_scan_topic': f'/{name}_lidar_front',
                 'rear_scan_topic': f'/{name}_lidar_rear',
                 'fused_scan_topic': f'/{name}/lidar_fused',
-                'wheel_odom_topic': f'/{name}/wheel/odometry',
+                'imu_topic': f'/{name}/sensors/imu/data',
+                'ekf_mode': ekf_mode,
                 'icp_odom_topic': f'/{name}/icp/odometry',
                 'ekf_odom_topic': f'/{name}/ekf/odometry',
             }],
@@ -138,6 +163,21 @@ def make_runner_actions(context):
         ])
         if localization_enabled:
             actions.append(localization)
+        if run_mission:
+            actions.append(motion_controller)
+
+    if run_mission:
+        actions.append(Node(
+            package='runner_sim',
+            executable='mission_manager_node',
+            name='mission_manager_node',
+            parameters=[{
+                'use_sim_time': True,
+                'mission_file': mission_file,
+                'max_runner_number': count,
+            }],
+            output='screen',
+        ))
 
     return actions
 
@@ -155,7 +195,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             PathJoinSubstitution([FindPackageShare('ros_gz_sim'), 'launch', 'gz_sim.launch.py'])
         ),
-        launch_arguments={'gz_args': [world, ' -r']}.items(),
+        launch_arguments={'gz_args': [world, ' -r ', LaunchConfiguration('gz_extra_args')]}.items(),
     )
 
     return LaunchDescription([
@@ -164,6 +204,19 @@ def generate_launch_description():
         DeclareLaunchArgument(
             'localization_mode', default_value='single',
             description='single: sensors and ICP/EKF only for runner_01; all: enable them for every robot.'),
+        DeclareLaunchArgument(
+            'run_mission', default_value='false',
+            description='Start mission manager and motion controllers.'),
+        DeclareLaunchArgument(
+            'mission_file',
+            default_value='',
+            description='CSV mission file used when run_mission is true.'),
+        DeclareLaunchArgument(
+            'ekf_mode', default_value='ICP',
+            description='ICP: EKF fuses LiDAR odometry only; IMU_ICP: LiDAR odometry + IMU gyro.'),
+        DeclareLaunchArgument(
+            'gz_extra_args', default_value='',
+            description='Extra Gazebo arguments, e.g. "-s --headless-rendering" for a run without GUI.'),
         DeclareLaunchArgument('world', default_value='warehouse.sdf', description='World file in the runner_sim worlds directory.'),
         DeclareLaunchArgument('rviz', default_value='false', description='Start RViz with the runner_01 LiDAR displays.'),
         gazebo,
@@ -174,6 +227,14 @@ def generate_launch_description():
             arguments=['-d', rviz_config],
             condition=IfCondition(LaunchConfiguration('rviz')),
             parameters=[{'use_sim_time': True}],
+            output='screen',
+        ),
+        # Simulation time for all nodes with use_sim_time (TF, RViz, mission delays).
+        Node(
+            package='ros_gz_bridge',
+            executable='parameter_bridge',
+            name='clock_bridge',
+            arguments=['/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock'],
             output='screen',
         ),
         OpaqueFunction(function=make_runner_actions),
