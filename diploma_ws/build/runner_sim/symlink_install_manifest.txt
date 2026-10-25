@@ -75,6 +75,7 @@
 /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/launch/runner_sim.launch.py
 /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/models/.keep
 /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/models/runner.urdf.xacro
+/home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/worlds/brightpick.sdf
 /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/worlds/runner_world.sdf
 /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/worlds/warehouse.sdf
 /home/beelzebub/Diploma/diploma_ws/install/runner_sim/share/runner_sim/missions/mission_01.csv

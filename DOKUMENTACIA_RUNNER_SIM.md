@@ -406,7 +406,7 @@ ros2 launch runner_sim runner_sim.launch.py world:=runner_world.sdf
 Spustenie šiestich robotov:
 
 ```bash
-ros2 launch runner_sim runner_sim.launch.py robot_count:=6 spawn_spacing:=2.0
+ros2 launch runner_sim runner_sim.launch.py robot_count:=6
 ```
 
 ### 8.1 Režim publikovania senzorov
@@ -505,8 +505,22 @@ zmenit .sh skript aby subscriboval iba konkretny runner, mat moznost lidarovy
 Runnery sa riadia podľa **ground truth** (`/<robot_name>/ground_truth/odometry`),
 nie podľa odhadu EKF. Lokalizácia tak neovplyvňuje trajektóriu a rôzne režimy
 EKF je možné porovnávať na rovnakom pohybe. Súradnice v CSV misiách sú v
-rámci `world` (spoločný pre všetkých runnerov; runnery sa spawnujú na
-$x=(i-(n-1)/2)\cdot$`spawn_spacing`, $y=0$).
+rámci `world` (spoločný pre všetkých runnerov). Runnery sa spawnujú vo formácii
+v radoch po troch, natočené v smere $+x$ (k severnej stene na $x=11$),
+s rozostupom stĺpcov 1,2 m v $y$ (susedné runnery sa môžu súčasne otočiť na mieste,
+polomer otáčania je približne 0,58 m) a radov 1,3 m v $x$ (medzera 0,3 m).
+Stĺpce ležia vo voľnom koridore medzi regálmi `regal4`/`regal5` ($y \le -0{,}95$)
+a regálmi na $y \ge 2{,}95$, takže runnery môžu ísť rovno vpred až k stene bez kolízie.
+Pohľad zozadu (v smere $+x$):
+
+```text
+runner_06 (-0.7, 2.2)    runner_04 (-0.7, 1.0)    runner_05 (-0.7,-0.2)
+runner_03 (-2.0, 2.2)    runner_01 (-2.0, 1.0)    runner_02 (-2.0,-0.2)
+```
+
+Gazebo server sa spúšťa samostatne (`-s`) a GUI (`gz sim -g`) sa otvorí až po
+úspešnom spawne všetkých runnerov. GUI spustené počas spawnovania niektoré runnery
+nezobrazilo, hoci v simulácii existovali; GUI spustené neskôr načíta celú scénu.
 
 Formát riadku misie:
 

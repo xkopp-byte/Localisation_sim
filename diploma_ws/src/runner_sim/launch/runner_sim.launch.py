@@ -1,15 +1,61 @@
+import math
+
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, OpaqueFunction
+from launch.actions import (
+    DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription, OpaqueFunction, RegisterEventHandler,
+)
 from launch.conditions import IfCondition
+from launch.event_handlers import OnProcessExit
 from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
+# Spawn formation: rows of three runners facing +X (towards the north wall at x = 11).
+# Runner footprint is 1.0 m long x 0.6 m wide. Columns are 1.2 m apart, so neighbours can turn
+# on the spot at the same time (turn radius ~0.58 m); rows keep a 0.3 m gap.
+# The columns sit in the free lane between regal4/regal5 (y <= -0.95) and the racks at
+# y >= 2.95, so every runner can drive straight forward to the wall without hitting anything.
+# Seen from behind (looking towards +X):
+#   X6  X4  X5   <- x = -0.7   (y = 2.2, 1.0, -0.2)
+#   X3  X1  X2   <- x = -2.0
+RUNNER_LENGTH = 1.0
+RUNNER_WIDTH = 0.6
+FORMATION_GAP = 0.3
+FORMATION_ORIGIN = (-2.0, 1.0)  # X1, middle column of the first row
+FORMATION_YAW = 0.0
+FORMATION_SLOT_OFFSETS = (0, -1, 1)  # middle, right, left (left is +Y when facing +X)
+FORMATION_COLUMN_SPACING = 1.2
+FORMATION_ROW_SPACING = RUNNER_LENGTH + FORMATION_GAP
+
+
+def formation_pose(index):
+    row, slot = divmod(index, 3)
+    x = FORMATION_ORIGIN[0] + row * FORMATION_ROW_SPACING
+    y = FORMATION_ORIGIN[1] + FORMATION_SLOT_OFFSETS[slot] * FORMATION_COLUMN_SPACING
+    return round(x, 3), round(y, 3)
+
+
+def make_gui_after_spawns(spawns, gz_extra_args):
+    """Open the Gazebo GUI only after every runner exists in the server.
+
+    A GUI that is already running misses some runners when several are created close
+    together; a GUI started afterwards loads the complete scene.
+    """
+    if '-s' in gz_extra_args.split():
+        return []
+    gui = ExecuteProcess(cmd=['gz', 'sim', '-g'], output='screen')
+    remaining = {spawn for spawn in spawns}
+
+    def on_spawn_exit(event, context):
+        remaining.discard(event.action)
+        return [gui] if not remaining else []
+
+    return [RegisterEventHandler(OnProcessExit(target_action=spawn, on_exit=on_spawn_exit)) for spawn in spawns]
+
 
 def make_runner_actions(context):
     count = int(LaunchConfiguration('robot_count').perform(context))
-    x_spacing = float(LaunchConfiguration('spawn_spacing').perform(context))
     localization_mode = LaunchConfiguration('localization_mode').perform(context)
     run_mission = LaunchConfiguration('run_mission').perform(context).lower() == 'true'
     mission_file = LaunchConfiguration('mission_file').perform(context)
@@ -18,10 +64,11 @@ def make_runner_actions(context):
         raise RuntimeError(f"ekf_mode must be ICP or IMU_ICP, got '{ekf_mode}'")
     model = PathJoinSubstitution([FindPackageShare('runner_sim'), 'models', 'runner.urdf.xacro'])
     actions = []
+    spawns = []
 
     for index in range(count):
         name = f'runner_{index + 1:02d}'
-        x = (index - (count - 1) / 2.0) * x_spacing
+        x, y = formation_pose(index)
         description = Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
@@ -41,8 +88,9 @@ def make_runner_actions(context):
                 '-name', name,
                 '-topic', f'/{name}/robot_description',
                 '-x', str(x),
-                '-y', '0.0',
+                '-y', str(y),
                 '-z', '0.02',
+                '-Y', str(FORMATION_YAW),
             ],
             output='screen',
         )
@@ -70,8 +118,8 @@ def make_runner_actions(context):
                 'estimate_topic': f'/{name}/ekf/odometry',
                 'marker_topic': '/visualization_marker_array',
                 'initial_x': x,
-                'initial_y': 0.0,
-                'initial_yaw': 0.0,
+                'initial_y': y,
+                'initial_yaw': FORMATION_YAW,
                 'show_covariance_ellipse': name == 'runner_01',
             }],
             output='screen',
@@ -157,6 +205,7 @@ def make_runner_actions(context):
             }],
             output='screen',
         )
+        spawns.append(spawn)
         actions.extend([
             description, spawn, visualization_tf, localization_visualization,
             front_lidar_tf, rear_lidar_tf, bridge,
@@ -165,6 +214,8 @@ def make_runner_actions(context):
             actions.append(localization)
         if run_mission:
             actions.append(motion_controller)
+
+    actions.extend(make_gui_after_spawns(spawns, LaunchConfiguration('gz_extra_args').perform(context)))
 
     if run_mission:
         actions.append(Node(
@@ -195,12 +246,12 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             PathJoinSubstitution([FindPackageShare('ros_gz_sim'), 'launch', 'gz_sim.launch.py'])
         ),
-        launch_arguments={'gz_args': [world, ' -r ', LaunchConfiguration('gz_extra_args')]}.items(),
+        # Server only; the GUI is started by make_gui_after_spawns once all runners exist.
+        launch_arguments={'gz_args': [world, ' -r -s ', LaunchConfiguration('gz_extra_args')]}.items(),
     )
 
     return LaunchDescription([
-        DeclareLaunchArgument('robot_count', default_value='1', description='Number of Runner instances (1 to 6).'),
-        DeclareLaunchArgument('spawn_spacing', default_value='2.0', description='X spacing between initial robot poses.'),
+        DeclareLaunchArgument('robot_count', default_value='1', description='Number of Runner instances, spawned in rows of three.'),
         DeclareLaunchArgument(
             'localization_mode', default_value='single',
             description='single: sensors and ICP/EKF only for runner_01; all: enable them for every robot.'),

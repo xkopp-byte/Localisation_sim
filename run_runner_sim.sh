@@ -49,12 +49,10 @@ select_mission() {
 }
 
 read -r -p "Number of robots [1]: " robot_count
-read -r -p "Spawn spacing in meters [2.0]: " spawn_spacing
 read -r -p "Localization mode (single/all) [single]: " localization_mode
 read -r -p "EKF mode (ICP/IMU_ICP) [ICP]: " ekf_mode
 
 robot_count=${robot_count:-1}
-spawn_spacing=${spawn_spacing:-2.0}
 localization_mode=${localization_mode:-single}
 ekf_mode=${ekf_mode:-ICP}
 ekf_mode=${ekf_mode^^}
@@ -74,7 +72,6 @@ fi
 
 setsid ros2 launch runner_sim runner_sim.launch.py \
   robot_count:="$robot_count" \
-  spawn_spacing:="$spawn_spacing" \
   localization_mode:="$localization_mode" \
   ekf_mode:="$ekf_mode" \
   run_mission:="$run_mission" \
@@ -100,6 +97,10 @@ cleanup() {
   kill -KILL -- -"$simulation_pid" 2>/dev/null || true
   pkill -TERM -f "$PWD/install/runner_sim/worlds/.*\.sdf" 2>/dev/null || true
   pkill -KILL -f "$PWD/install/runner_sim/worlds/.*\.sdf" 2>/dev/null || true
+  # The Gazebo server renames its process to "gz sim server", so the pattern above can miss it.
+  pkill -TERM -f "^gz sim server" 2>/dev/null || true
+  sleep 0.5
+  pkill -KILL -f "^gz sim server" 2>/dev/null || true
   wait "$simulation_pid" 2>/dev/null || true
 }
 
